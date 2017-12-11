@@ -36,11 +36,10 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-
   config.before(:all) do
-  FactoryBot.reload
-  
-# add `FactoryBot` methods
+    FactoryBot.reload
+  end
+  # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
