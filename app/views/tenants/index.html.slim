@@ -1,0 +1,10 @@
+h1 List of all tenants
+
+ul.tenant
+  - @tenants.each do |tenant|
+    li
+      = tenant.name
+    li
+      = tenant.phone
+    li
+      = tenant.website
