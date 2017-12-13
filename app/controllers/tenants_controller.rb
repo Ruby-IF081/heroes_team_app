@@ -27,7 +27,7 @@ class TenantsController < ApplicationController
   def update
     @tenant = Tenant.find(params[:id])
     if @tenant.update_attributes(tenant_params)
-    flash[:success] = "Information is updated"
+      flash[:success] = "Information is updated"
       redirect_to @tenant
     else
       render 'edit'
@@ -42,6 +42,6 @@ class TenantsController < ApplicationController
   private
 
   def tenant_params
-     params.require(:tenant).permit(:name, :website, :phone, :logo)
+    params.require(:tenant).permit(:name, :website, :phone, :logo)
   end
 end
