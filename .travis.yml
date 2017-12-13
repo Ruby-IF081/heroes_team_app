@@ -5,13 +5,14 @@ rvm:
 cache: bundler
 
 script:
-  - bundle exec rake db:setup
+  - bundle exec rake db:create db:migrate
   - bundle exec rake spec
+  - bundle exec rubocop
 
 services:
   - postgresql
 
 before_script:
-    - cp config/database.yml.example config/database.yml
-    - bundle exec rubocop
-    - psql -c 'create database heros_team_app_test;' -U postgres
+  - cp config/database.yml.example config/database.yml
+    
+    
