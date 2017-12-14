@@ -1,5 +1,5 @@
 class Tenant < ApplicationRecord
-  VALID_WEBSITE_REGEX = %r{\A[^_\W][-a-zA-Z0-9_]+\.+[-a-zA-Z0-9]+\z}
+  VALID_WEBSITE_REGEX = /\A[^_\W][-a-zA-Z0-9_]+\.+[-a-zA-Z0-9]+\z/i
 
   has_many :users
 
