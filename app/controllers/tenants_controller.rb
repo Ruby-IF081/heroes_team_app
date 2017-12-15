@@ -37,6 +37,7 @@ class TenantsController < ApplicationController
   def destroy
     Tenant.find(params[:id]).destroy
     flash[:success] = "Tenant is deleted"
+    redirect_to tenants_path
   end
 
   private
