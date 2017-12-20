@@ -3,6 +3,7 @@ Documentation:
 
 AllCops:
   Exclude:
+    - 'log/capistrano.log'
     - 'vendor/**/*'
     - 'tmp/**/*'
     - 'config/initializers/*'
