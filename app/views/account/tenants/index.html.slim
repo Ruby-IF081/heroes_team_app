@@ -1,7 +1,7 @@
 h1 All tenants
 = link_to "Add new tenant", new_account_tenant_path, class: 'btn btn-primary'
 
-ul.tenant
+ul
   - @tenants.each do |tenant|
     li
       = link_to tenant.name, account_tenant_path(tenant) 

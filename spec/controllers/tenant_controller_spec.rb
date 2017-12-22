@@ -7,22 +7,22 @@ RSpec.describe Account::TenantsController, type: :controller do
   end
   let!(:tenant) { FactoryBot.create(:tenant) }
 
-  it 'Get#index' do
+  it 'GET #index' do
     get :index
     expect(response).to have_http_status(200)
   end
 
-  it 'Get#show' do
+  it 'GET #show' do
     get :index, params: { id: tenant.id }
     expect(response).to have_http_status(200)
   end
 
-  it "Get#new" do
+  it "GET #new" do
     get :new
     expect(response).to have_http_status(200)
   end
 
-  it "Get#edit" do
+  it "GET #edit" do
     get :edit, params: { id: tenant.id }
     expect(response).to have_http_status(200)
   end

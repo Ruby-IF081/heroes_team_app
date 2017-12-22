@@ -2,8 +2,9 @@ class Tenant < ApplicationRecord
   VALID_WEBSITE_REGEX = /\A(www.)?[^_\W][-a-zA-Z0-9_]+\.+[-a-zA-Z0-9]+\z/i
   VALID_PHONE_REGEX = /\A[+]?[\d\-.() ]+\z/
 
-  has_many :users
-  has_many :companies, through: :subscriptions
+  has_many :users, dependent: :destroy
+  has_many :companies, through: :users
+  has_one :owner, class_name: 'User'
 
   validates :name, presence: true, length:    { minimum: 3, maximum: 64 }
   validates :website, presence: true, length: { minimum: 3, maximum: 64 },
