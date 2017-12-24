@@ -8,6 +8,9 @@ html
     = javascript_include_tag 'application'
   body
     = render 'layouts/header'
+    p.alert
+      - flash.each do |message_type, message|
+        = content_tag(:div, message, class: "alert alert-#{message_type}")
     div.container
       = yield
       = any_login_here if defined?(AnyLogin)
