@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    = display_meta_tags(default_meta_tags)
+    = favicon_link_tag 'favicon.ico'
+    = csrf_meta_tags
+    = stylesheet_link_tag    'landing/application', media: 'all'
+    = javascript_include_tag 'application'
+    = render_google_analytics
+    link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"
+  body.land-font
+    = render 'layouts/shared/header/header_landing'
+    .content
+      = yield
+    = any_login_here if defined?(AnyLogin)
+    = render 'layouts/footer'

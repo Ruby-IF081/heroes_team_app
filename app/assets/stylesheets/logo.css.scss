@@ -1,0 +1,23 @@
+//header logo
+#logo {
+  height: 90px;
+  width: 140px;
+  margin-top: -20px;
+  //margin-bottom: -10px;
+  margin-left: 7em;
+  object-fit: fill;
+}
+
+#logo1 {
+  height: 100%;
+  width: 140px;
+  object-fit: fill;
+}
+
+//logo for companies
+.company-logo {
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 1;
+  margin: 0 0 10px;
+}

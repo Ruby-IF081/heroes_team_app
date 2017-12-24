@@ -1,8 +1,16 @@
-h1 All tenants
-= link_to "Add new tenant", new_account_tenant_path, class: 'btn btn-primary'
-
-ul
-  - @tenants.each do |tenant|
-    li
-      = link_to tenant.name, account_tenant_path(tenant) 
-= paginate @tenants
+- set_meta_tags title: "All tenants",
+        description: "All tenants"
+.content-wrapper
+  .content-header.row
+    .content-header-left.col-md-6.col-12.mb-2
+      .content-header-title.mb-0
+        h3 Tenants
+      .row.breadcrumbs-top
+        .breadcrumb-wrapper.col-12
+          = render_breadcrumbs({ 'Dashboard' => account_root_path,
+                                 'Tenants' => nil })
+  .content-body
+    section.row
+      .col-md-12
+        = render 'tenants_table', tenants: @tenants
+        = paginate @tenants

@@ -1,3 +1,5 @@
+require 'simplecov'
+SimpleCov.start
 # require database cleaner at the top level
 require 'database_cleaner'
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -8,7 +10,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
-
+require 'capybara/rspec'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -22,7 +24,7 @@ require 'rspec/rails'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -76,6 +78,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
   # For using the `Devise::Test::ControllerHelpers`
+  config.include Devise::Test::ControllerHelpers, type: :controller
+end
+
+# For using the `Devise::Test::ControllerHelpers`
+RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
 end

@@ -10,5 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
+//= require popper
+//= require bootstrap
+//= require ./stack_theme/core/app-menu
 //= require rails-ujs
-//= require_tree .
+//= require Chart.bundle
+//= require chartkick
+//= require rating
+//= require comments_form
+//= require user_contacts
+//= require error_create_contact

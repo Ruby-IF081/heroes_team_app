@@ -1,14 +1,20 @@
 doctype html
 html
   head
-    title
-      | HeroesTeamApp
+    = display_meta_tags(default_meta_tags)
+    = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-  body
+    = render_google_analytics
+  body data-open="hover"
     = render 'layouts/header'
-    div.container
-      = yield
-      = any_login_here if defined?(AnyLogin)
-      = render 'layouts/footer'
+    = render 'layouts/nav' if user_signed_in?
+    .content
+      .app-content.container.center-layout
+        .row.alert
+          - flash.each do |message_type, message|
+            = content_tag(:div, message, class: "alert alert-#{message_type} col-md-3")
+        = yield
+    = any_login_here if defined?(AnyLogin)
+    = render 'layouts/footer'

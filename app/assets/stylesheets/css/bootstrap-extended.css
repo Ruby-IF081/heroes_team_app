@@ -320,7 +320,7 @@ select.form-control {
   padding-bottom: 0 !important; }
 
 /* 
-TODO:M: To check with latest bootstrap version and remove it. 
+To check with latest bootstrap version and remove it. 
 Bootstrap Enhance */
 .custom-control {
   display: block; }
@@ -489,9 +489,6 @@ Bootstrap Enhance */
 
 .dropdown-toggle:focus {
   outline: 0; }
-
-.navbar-horizontal .dropdown-toggle::after {
-  top: -9px !important; }
 
 .dropdown-menu-right {
   left: auto !important;

@@ -1,0 +1,40 @@
+#sticky-wrapper.sticky-wrapper
+  .header-navbar.navbar-expand-sm.navbar.navbar-horizontal.navbar-fixed.navbar-light.navbar-without-dd-arrow.navbar-shadow.menu-border.navbar-brand-center[role="navigation" data-menu="menu-wrapper" data-nav="brand-center" style=""]
+    .navbar-container.main-menu-content.container[data-menu="menu-container"]
+      ul#main-menu-navigation.nav.navbar-nav[data-menu="menu-navigation"]
+        li.dropdown.nav-item.active[data-menu="dropdown"]
+          = link_to account_root_path, class:'dropdown-toggle nav-link' do
+            i.ft-home
+            span
+              | Dashboard
+        - if current_user.privileged?
+          li.dropdown.nav-item[data-menu="dropdown"]
+            a.dropdown-toggle.nav-link[href="#" data-toggle="dropdown"]
+              i.ft-monitor
+              span
+                | Users
+            ul.dropdown-menu
+              li.dropdown[data-menu="dropdown-submenu"]
+                = link_to 'User list', account_users_path, class:'dropdown-item'
+              li.dropdown[data-menu="dropdown-submenu"]
+                = link_to 'Add new user', new_account_user_path, class:'dropdown-item'
+        li.dropdown.nav-item[data-menu="dropdown"]
+          = link_to 'Companies', account_companies_path, class:'dropdown-toggle nav-link'
+        - if current_user.admin?
+          li.dropdown.nav-item[data-menu="dropdown"]
+            = link_to account_my_tenant_path, class:'dropdown-toggle nav-link' do
+              i.ft-zap
+              span
+                | My Tenant
+          li.dropdown.nav-item[data-menu="dropdown"]
+            = link_to account_analytics_path, class:'dropdown-toggle nav-link' do
+              i.ft-zap
+              span
+                | Analytics
+        - if current_user.super_admin?
+          li.dropdown.nav-item[data-menu="dropdown"]
+            = link_to account_contacts_path, class:'dropdown-toggle nav-link' do
+              i.ft-zap
+              span
+                | Contacts
+

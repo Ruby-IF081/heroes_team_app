@@ -1,0 +1,22 @@
+ul.nav.navbar-nav.float-right
+  li.dropdown.dropdown-user.nav-item
+    = link_to account_user_path(current_user), { class: 'dropdown-toggle nav-link dropdown-user-link',
+                                                    'data-toggle' => 'dropdown' } do
+      span.avatar.avatar-online
+        = gravatar_image_tag(current_user.email)
+        i
+      span.user-name
+        = current_user.full_name
+    .dropdown-menu.dropdown-menu-right
+      = link_to edit_account_profile_path, class: "dropdown-item" do
+        i.fa
+        | Edit Profile
+      - if impersonated?
+        .dropdown-divider
+        = link_to stop_impersonating_account_users_path, method: :post, class: "dropdown-item" do
+          i.fa.fa-arrow-left
+          | Back to admin
+      .dropdown-divider
+      = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
+        i.fa.fa-sign-out
+        | Log out

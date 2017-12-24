@@ -12,16 +12,22 @@
 #  screenshot   :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  company_id   :integer
+#  rating       :integer          default(0)
 #
 
 FactoryBot.define do
   factory :page do
+    company
     page_type { Page::PAGE_TYPES.sample }
     title { Faker::Beer.name }
-    content_html { Faker::Lorem.paragraphs(10).join }
-    content { Faker::Lorem.paragraphs(10).join }
-    source_url { Faker::Internet.url }
-    status { Page::STATUSES.sample }
-    screenshot { Faker::Avatar.image }
+    source_url { Faker::Internet.url('en.wikipedia.org/wiki') }
+    status { Page::PENDING_STATUS }
+
+    trait :with_content do
+      content_html { Faker::Lorem.paragraphs(10).join }
+      content { Faker::Lorem.paragraphs(10).join }
+      screenshot { Faker::Avatar.image }
+    end
   end
 end

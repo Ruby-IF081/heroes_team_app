@@ -1,0 +1,15 @@
+table.table.table-bordered
+  thead
+    th ID
+    th Name
+    th Website
+    th Users
+    th Added
+  tbody
+    - tenants.each do |tenant|
+      tr
+        td= tenant.id
+        td= link_to tenant.name, account_tenant_path(tenant)
+        td= tenant.website
+        td= tenant.users.count
+        td= l tenant.created_at, format: :long

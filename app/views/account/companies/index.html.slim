@@ -1,0 +1,34 @@
+- set_meta_tags title: 'Companies searches',
+                description: 'All searched companies'
+.content-wrapper
+  .content-header.row
+    .content-header-left.col-md-6.col-12.mb-2
+      .content-header-title.mb-0
+        h3 Companies
+      .row.breadcrumbs-top
+        .breadcrumb-wrapper.col-12
+          = render_breadcrumbs({'Dashboard' => account_root_path,
+                                'Companies' => nil})
+    .content-header-right.text-md-right.col-md-6.col-12
+      .form-group
+        .btn-icon.btn.btn-white.btn-round
+          = link_to new_account_company_path do
+            i.fa.fa-plus
+  .content-body
+    section.row
+      .col-sm-12
+        - @companies.each do |company|
+          #overview.card
+            .card-header
+              h4.card-title= link_to company.name, account_company_path(company)
+            .card-content
+              .card-body
+                .row
+                  .card-image.col-sm-2
+                    = image_tag(company.logo.thumb, alt: company.name, class: "company-logo")
+                  .card-text.col-sm-10
+                    h4= company.name
+                    a href= urlify(company.domain) target="_blank"=  urlify(company.domain)
+                    h6 Description
+                    = simple_format(company.overview)
+    = paginate @companies

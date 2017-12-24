@@ -1,3 +1,4 @@
+
 *.rbc
 capybara-*.html
 .rspec
@@ -6,26 +7,26 @@ capybara-*.html
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /public/system
+/public/uploads
 /coverage/
 /spec/tmp
 *.orig
 rerun.txt
 pickle-email-*.html
-/.idea
+.idea/
 
 # Configs
 /config/database.yml
 /config/secrets.yml
 
 
-# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 config/initializers/secret_token.rb
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
 # config/secrets.yml
 
 # dotenv
-# TODO Comment out this rule if environment variables can be committed
+# Comment out this rule if environment variables can be committed
 .env
 
 ## Environment normalization:
@@ -49,4 +50,11 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore public files
+public/uploads
+
+# Ignore simplecov
+coverage/
 .idea/
+
+dump.rdb

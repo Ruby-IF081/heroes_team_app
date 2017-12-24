@@ -1,14 +1,9 @@
-header.navbar.navbar-fixed-top.navbar-dark
-  div.container
-    = link_to 'SalesAssistant', new_session_path(:user), id: 'logo'
-    nav
-      ul.nav.navbar-nav.navbar-right
+nav.header-navbar.navbar-expand-md.navbar.navbar-with-menu.navbar-static-top.navbar-dark.bg-gradient-x-grey-blue.navbar-brand-center
+  .navbar-wrapper
+    .navbar-container.container
+      #navbar-mobile.collapse.navbar-collapse.container.center-layout
+        ul.nav.navbar-nav.mr-auto.float-left
+          = link_to root_path do
+            = image_tag("logo2.png", alt: 'Sales Assistant', id: 'logo1')
         - if user_signed_in?
-          li.nav_li
-            = link_to 'Logout', destroy_user_session_path, method: :delete
-        - else
-          - if controller_name != 'sessions'
-            li.nav_li
-              = link_to new_session_path(:user) do
-                i.fa.fa-user
-                  | Login
+          = render 'layouts/shared/user_menu'

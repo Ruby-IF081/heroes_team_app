@@ -1,0 +1,40 @@
+.content-wrapper
+  .content-body.container
+    .row
+      .card.container
+        .card-header.row
+          h4.card-title Overview
+        .card-content.collapse.show
+          .card-body.container
+            .row
+              - if company.logo?
+                .col-3
+                  = wicked_pdf_image_tag(company.logo.thumb, alt: company.name, class: "img-fluid")
+              .col-9
+                h4= company.name
+                a [href="http://#{company.domain}"]= company.domain
+                h6 Description
+                = simple_format(company.overview)
+            .row
+              .card-text.col-3
+                h6 Founded Year
+              .card-text.col-8
+                p= company.founded
+            .row
+              .card-text.col-3
+                h6 Count of Employees
+              .card-text.col-8
+                p= company.approx_employees
+            .row
+              .card-text.col-3
+                h6 Industries
+              .card-text.col-9
+                ul
+                  - company.industries.each do |item|
+                    li= item.name
+        .card
+          .card-header
+            h4.card-title= "#{company.name} links"
+          .card-content
+            .card-body
+              = render partial: 'account/companies/pdf/social_links', formats: 'html', locals: { company: company }

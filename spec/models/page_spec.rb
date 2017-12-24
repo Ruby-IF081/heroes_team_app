@@ -12,6 +12,8 @@
 #  screenshot   :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  company_id   :integer
+#  rating       :integer          default(0)
 #
 
 require 'rails_helper'
