@@ -23,6 +23,7 @@
     .form-control-position
       i.fa.fa-envelope
     .help-block.font-small-3
+  = render 'devise/shared/registration_form_tenant', f: f
   fieldset.form-group.position-relative.has-icon-left
     = f.password_field :password,
               class: "form-control input-lg",
