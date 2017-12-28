@@ -10,10 +10,10 @@ class Account::PagesController < ApplicationController
   private
 
   def resource
-    Page.find(params[:id])
+    collection.find(params[:id])
   end
 
   def collection
-    Page.all
+    current_user.companies.find(params[:company_id]).pages
   end
 end
