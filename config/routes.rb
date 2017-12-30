@@ -9,5 +9,6 @@ Rails.application.routes.draw do
       resources :pages, only: %i[show index]
     end
     resources :tenants
+    resources :users
   end
 end

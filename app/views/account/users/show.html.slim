@@ -1,0 +1,82 @@
+.content-wrapper
+  .content-header.row
+    .content-header-left.col-md-6.col-12.mb-2
+      h3.content-header-title.mb-0
+        = @user.full_name
+      .row.breadcrumbs-top
+        .breadcrumb-wrapper.col-12
+          ol.breadcrumb
+            li.breadcrumb-item
+              = link_to 'All Users', account_users_path
+            li.breadcrumb-item.active
+              = @user.full_name
+    .content-header-right.text-md-right.col-md-6.col-12
+      .form-group
+        = link_to edit_account_user_path,
+                class: 'button btn-icon btn btn-grey-blue btn-danger-2 btn-round'
+          i.fa.fa-pencil-square-o
+        = link_to account_user_path, method: :delete,
+                  data: {confirm: 'Are you certain you want to delete this user?'},
+                  class: 'button btn-icon btn btn-grey-blue btn-darker-2 btn-round'
+          i.fa.fa-trash-o
+  .content-body
+    section.row
+      .col-sm-12
+        #overview.card
+          .card-header
+            h4.card-title Profile
+          .card-content
+            .card-body
+              .row
+                .card-image.col-sm-2
+                  = gravatar_image_tag(@user.email,:gravatar => { :size => 120 })
+                .card-text.col-sm-8
+                  .row
+                    .card-text.col-sm-2
+                      h6 Full name:
+                    .card-text.col-sm-4
+                      = @user.full_name
+                  .row
+                    .card-text.col-sm-2
+                      h6 User-email:
+                    .card-text.col-sm-4
+                      = @user.email
+                  .row
+                    .card-text.col-sm-2
+                      h6 Role:
+                    .card-text.col-sm-4
+                      = @user.role
+                  .row
+                    .card-text.col-sm-2
+                      h6 Created at:
+                    .card-text.col-sm-10
+                      = @user.created_at.strftime('%F %r')
+                  .row
+                    .card-text.col-sm-2
+                      h6 Tenant:
+                    .card-text.col-sm-10
+                      = @user.tenant_name
+        .card
+          .card-header
+            h4.card-title
+              = "#{@user.full_name} Companies"
+          .card-content.collapse.show
+            .card-body
+              .card-text
+    section.row
+      .col-md-6.col-sm-12
+        .card
+          .card-header
+            h4.card-title Extra Card 1
+          .card-content.collapse.show
+            .card-body.border-top-blue-grey.border-top-lighten-5
+              h4.card-title Content title
+              p.card-text
+      .col-md-6.col-sm-12
+        .card
+          .card-header
+            h4.card-title Extra Card 2
+          .card-content.collapse.show
+            .card-body
+              h4.card-title Content title
+              p.card-text

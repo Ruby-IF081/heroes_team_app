@@ -1,0 +1,7 @@
+= simple_form_for [:account, user],
+        defaults: { input_html: { class: 'form-control' } } do |f|
+  = f.input :first_name, autofocus: true
+  = f.input :last_name
+  = f.input :email
+  = f.input :role , collection: User::ROLES, include_blank: false
+  = f.button :submit, button_text, class: "btn btn-primary"

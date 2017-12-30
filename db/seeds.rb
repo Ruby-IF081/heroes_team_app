@@ -17,3 +17,5 @@ FactoryBot.create(:company, name:  'Alphabet Inc.',
 company = Company.first
 
 FactoryBot.create_list(:page, 20, company: company)
+
+

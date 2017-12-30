@@ -5,5 +5,17 @@ FactoryBot.define do
     sequence(:email) { |n| "#{n}#{Faker::Internet.email}" }
     tenant { build(:tenant) }
     password { Faker::Internet.password }
+
+    trait :admin do
+      role { User::ADMIN_ROLE }
+    end
+
+    trait :sale do
+      role { User::SALE_ROLE }
+    end
+
+    trait :moderator do
+      role { User::MODERATOR_ROLE }
+    end
   end
 end

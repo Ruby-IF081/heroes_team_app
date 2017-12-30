@@ -5,6 +5,10 @@
     enabled: false
   InstanceVariableAssumption:
     enabled: false
+  NilCheck:
+    enabled: false
+  PrimaDonnaMethod:
+    enabled: false
 "app/helpers":
   UtilityFunction:
     enabled: false
