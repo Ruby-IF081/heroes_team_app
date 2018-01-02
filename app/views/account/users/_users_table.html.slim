@@ -19,3 +19,6 @@ table.table.table-bordered
               = link_to 'Delete', account_user_path(user), method: :delete,
                         data: {confirm: 'Are you certain you want to delete this user?'},
                         class: 'btn btn-danger btn-sm'
+            .col-md-4
+              = link_to 'Pretend', impersonate_account_user_path(user), method: :post,
+                      class: 'btn btn-primary btn-sm'

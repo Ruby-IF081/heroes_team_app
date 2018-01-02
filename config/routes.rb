@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       resources :pages, only: %i[show index]
     end
     resources :tenants
-    resources :users
+    resources :users do
+      post :impersonate, on: :member
+      post :stop_impersonating, on: :collection
+    end
   end
 end

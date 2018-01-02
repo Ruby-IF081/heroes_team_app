@@ -194,6 +194,8 @@ GEM
     pg (0.21.0)
     popper_js (1.12.9)
     powerpack (0.1.1)
+    pretender (0.3.1)
+      actionpack
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -388,6 +390,7 @@ DEPENDENCIES
   mini_magick
   pg (~> 0.18)
   popper_js (~> 1.12.9)
+  pretender
   pry (~> 0.10.3)
   puma (~> 3.7)
   rails (~> 5.1.4)

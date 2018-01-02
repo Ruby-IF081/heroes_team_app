@@ -6,6 +6,17 @@ class Account::UsersController < ApplicationController
     @users = collection.page(params[:page]).per(10)
   end
 
+  def impersonate
+    user = resource
+    impersonate_user(user)
+    redirect_to root_path
+  end
+
+  def stop_impersonating
+    stop_impersonating_user
+    redirect_to root_path
+  end
+
   def show
     @user = resource
   end
