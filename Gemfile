@@ -25,6 +25,8 @@ gem 'sidekiq'
 gem 'simple_form'
 gem 'slim'
 gem 'uglifier', '>= 1.3.0'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 # Use SCSS for stylesheets
 gem 'bootstrap', '~> 4.0.0.beta2.1'

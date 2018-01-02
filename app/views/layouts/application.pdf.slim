@@ -1,0 +1,8 @@
+doctype html
+html
+  head
+    title Generated PDF
+    = wicked_pdf_stylesheet_link_tag 'application', media: 'all'
+  body
+    .app-content.container.center-layout.mt-2.mb-5
+      = yield
