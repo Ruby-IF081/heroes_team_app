@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
 
   namespace :account do
+    root 'dashboard#index'
     resources :companies do
       resources :pages, only: %i[show index]
       get :download, on: :member
