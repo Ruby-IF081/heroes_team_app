@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :companies do
       resources :pages, only: %i[show index]
       get :download, on: :member
+      collection do
+        resource :chrome_extensions, only: %i[new create]
+      end
     end
     resources :tenants
     resources :users do
