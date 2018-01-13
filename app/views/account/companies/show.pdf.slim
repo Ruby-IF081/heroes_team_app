@@ -1,4 +1,4 @@
-.content-wrapper
+  .content-wrapper
   .content-body.container
     .row
       .card.container
@@ -7,8 +7,9 @@
         .card-content.collapse.show
           .card-body.container
             .row
-              .col-3
-                img.img-fluid [src="#{company.logo.path}" alt="Company Logo"]
+              - if company.logo.path
+                .col-3
+                  = image_tag(company.logo.path, alt: company.name, class: "img-fluid")
               .col-9
                 h4= company.name
                 a [href="http://#{company.domain}"]= company.domain
