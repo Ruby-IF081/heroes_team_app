@@ -8,6 +8,10 @@ FactoryBot.define do
       domain { Faker::Internet.email }
     end
 
+    trait :worker_domain do
+      domain { 'softserve.ua' }
+    end
+
     trait :old_random_date do
       created_at { rand(3.month.ago..Time.now) }
     end
