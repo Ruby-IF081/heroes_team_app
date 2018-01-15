@@ -3,6 +3,6 @@
   .row
     .card-text.col-3
       = wicked_pdf_image_tag("icon/#{link}.png", class: "icon-right")
-      span =link.capitalize.gsub('company', '')
+      span = link.capitalize.gsub('company', '')
     .card-text.col-8
-      a href=company[link] target="_blank"=  company[link]
+      a href=company[link] target="_blank"= company[link]

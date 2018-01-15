@@ -37,4 +37,4 @@
             h4.card-title= "#{company.name} links"
           .card-content
             .card-body
-              = render :partial => 'social_links_pdf', :formats => [:html], :locals => { :company => company }
+              = render partial: 'account/companies/pdf/social_links', formats: 'html', locals: { company: company }
