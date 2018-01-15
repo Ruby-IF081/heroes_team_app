@@ -7,9 +7,9 @@
         .card-content.collapse.show
           .card-body.container
             .row
-              - if company.logo.path
+              - if company.logo?
                 .col-3
-                  = image_tag(company.logo.path, alt: company.name, class: "img-fluid")
+                  = wicked_pdf_image_tag(company.logo.thumb, alt: company.name, class: "img-fluid")
               .col-9
                 h4= company.name
                 a [href="http://#{company.domain}"]= company.domain
@@ -37,53 +37,4 @@
             h4.card-title= "#{company.name} links"
           .card-content
             .card-body
-              .row
-                .card-text.col-3
-                  h6 Twitter
-                .card-text.col-8
-                  a href=company.twitter target="_blank"=  company.twitter
-              .row
-                .card-text.col-3
-                  h6 Facebook
-                .card-text.col-8
-                  a href=company.facebook target="_blank"=  company.facebook
-              .row
-                .card-text.col-3
-                  h6 Linkedin
-                .card-text.col-8
-                  a href=company.linkedincompany target="_blank"=  company.linkedincompany
-              .row
-                .card-text.col-3
-                  h6 Youtube
-                .card-text.col-8
-                  a href=company.youtube target="_blank"=  company.youtube
-              .row
-                .card-text.col-3
-                  h6 Angellist
-                .card-text.col-8
-                  a href=company.angellist target="_blank"=  company.angellist
-              .row
-                .card-text.col-3
-                  h6 Owler
-                .card-text.col-8
-                  a href=company.owler target="_blank"=  company.owler
-              .row
-                .card-text.col-3
-                  h6 Crunchbase
-                .card-text.col-8
-                  a href=company.crunchbasecompany target="_blank"=  company.crunchbasecompany
-              .row
-                .card-text.col-3
-                  h6 Pinterest
-                .card-text.col-8
-                  a href=company.pinterest target="_blank"=  company.pinterest
-              .row
-                .card-text.col-3
-                  h6 Google
-                .card-text.col-8
-                  a href=company.google target="_blank"=  company.google
-              .row
-                .card-text.col-3
-                  h6 Klout
-                .card-text.col-8
-                  a href=company.klout target="_blank"=  company.klout
+              = render :partial => 'social_links_pdf', :formats => [:html], :locals => { :company => company }

@@ -23,7 +23,7 @@
               .card-body
                 .row
                   .card-image.col-sm-2
-                    = image_tag(company.logo, alt: company.name, class: "company-logo")
+                    = image_tag(company.logo.thumb, alt: company.name, class: "company-logo")
                   .card-text.col-sm-10
                     h4= company.name
                     a href="http://#{company.domain}" target="_blank"=  company.domain
