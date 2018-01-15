@@ -1,4 +1,4 @@
-if Rails.env.production? 
+if Rails.env.production?
   Tenant.create(name: "super")
   Tenant.create(name: "admin")
   Tenant.create(name: "sale")

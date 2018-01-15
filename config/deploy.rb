@@ -42,24 +42,3 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
-
-namespace :rake do
-  namespace :db do
-    %w[create migrate reset rollback seed setup].each do |command|
-      desc "Rake db:#{command}"
-      task command, roles: :app, except: {no_release: true} do
-        run "cd #{deploy_to}/current"
-        run "bundle exec rake db:#{ENV['task']} RAILS_ENV=#{rails_env}"
-      end
-    end
-  end
-  namespace :assets do
-    %w[precompile clean].each do |command|
-      desc "Rake assets:#{command}"
-      task command, roles: :app, except: {no_release: true} do
-        run "cd #{deploy_to}/current"
-        run "bundle exec rake assets:#{ENV['task']} RAILS_ENV=#{rails_env}"
-      end
-    end
-  end
-end
