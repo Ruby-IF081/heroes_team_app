@@ -58,10 +58,17 @@ class Account::UsersController < ApplicationController
     redirect_to account_users_path, flash: { success: 'User deleted!' }
   end
 
+  def download
+    send_data collection.to_comma, filename: "Users #{Date.today}.csv", disposition: 'attachment'
+  end
+
   private
 
   def resource_params
-    params.require(:user).permit(:first_name, :last_name, :email, :role)
+    params_keys = %i[first_name last_name email]
+    strong_params = params.require(:user)
+    params_keys.push(:role) if strong_params[:role].in?(available_roles)
+    strong_params.permit(params_keys)
   end
 
   def admin_collection

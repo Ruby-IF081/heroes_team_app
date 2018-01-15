@@ -17,7 +17,6 @@
   .content-body
     section.row
       .col-sm-12
-        /! Overview
         - @companies.each do |company|
           #overview.card
             .card-header
@@ -26,11 +25,10 @@
               .card-body
                 .row
                   .card-image.col-sm-2
-                    img.company-logo.height-100.width-150 src="#{company.logo_url}"
+                    = image_tag(company.logo.thumb, alt: company.name, class: "company-logo")
                   .card-text.col-sm-10
                     h4= company.name
-                    a href="http://#{company.domain}" target="_blank"=  company.domain
+                    a href= urlify(company.domain) target="_blank"=  urlify(company.domain)
                     h6 Description
                     = simple_format(company.overview)
     = paginate @companies
-        /! / Overview

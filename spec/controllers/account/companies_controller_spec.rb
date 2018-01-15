@@ -22,6 +22,12 @@ RSpec.describe Account::CompaniesController, type: :controller do
   end
 
   describe "GET #show" do
+    let!(:comment) do
+      create :comment, commentable: company,
+                       tenant_id: company.user.tenant.id,
+                       user_id:  company.user.id
+    end
+
     it "assigns the requested company to @company" do
       get :show, params: { id: company.id }
       expect(assigns(:company)).to eq(company)
@@ -30,7 +36,53 @@ RSpec.describe Account::CompaniesController, type: :controller do
     it "renders the #show view" do
       get :show, params: { id: company.id }
       expect(response).to have_http_status(200)
-      expect(response).to render_template :show
+      expect(response).to render_template(:show)
+    end
+
+    context 'contains the comments' do
+      render_views
+      it 'should contain comment body' do
+        get :show, params: { id: company.id }
+        expect(response.body).to have_content(comment.body)
+      end
+    end
+    context 'when user sale' do
+      render_views
+      it 'comment should not contain delete link' do
+        get :show, params: { id: company.id }
+        expect(response.body).to have_link(href: account_comment_path(comment))
+      end
+    end
+    context 'when user admin' do
+      before :each do
+        @sale = FactoryBot.create(:user, :sale)
+        sign_out company.user
+        sign_in @sale
+      end
+      let!(:sale_company) { create :company, user_id: @sale.id }
+      let!(:sale_comment) do
+        create :comment, commentable: sale_company,
+                         user_id: @sale.id,
+                         tenant_id: @sale.tenant_id
+      end
+      render_views
+      it 'comment should contain delete link' do
+        get :show, params: { id: sale_company.id }
+        expect(response.body).not_to have_link(href: account_comment_path(sale_comment))
+      end
+    end
+  end
+
+  describe "GET #edit" do
+    it "assigns the requested company to @company" do
+      get :edit, params: { id: company.id }
+      expect(assigns(:company)).to eq(company)
+    end
+
+    it "renders the #edit view" do
+      get :edit, params: { id: company.id }
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:edit)
     end
   end
 
@@ -56,7 +108,14 @@ RSpec.describe Account::CompaniesController, type: :controller do
         post :create, params: { company: { name: val_company.name,
                                            domain: val_company.domain } }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to account_company_path(Company.last)
+        expect(response).to redirect_to(account_company_path(Company.last))
+      end
+
+      it "triggers company_domain_worker" do
+        expect do
+          post :create, params: { company: { name: val_company.name,
+                                             domain: val_company.domain } }
+        end.to change(CompanyDomainWorker.jobs, :size).by(1)
       end
     end
 
@@ -74,7 +133,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
         post :create, params: { company: { name: inval_company.name,
                                            domain: inval_company.domain } }
         expect(response).to have_http_status(200)
-        expect(response).to render_template :new
+        expect(response).to render_template(:new)
       end
     end
   end
@@ -100,7 +159,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
         put :update, params: { id: company.id,
                                company: { name: 'edited', domain: 'edited.com' } }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to account_company_path
+        expect(response).to redirect_to(account_company_path)
       end
     end
 
@@ -128,7 +187,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
                                company: { name: inval_company.name,
                                           domain: inval_company.domain } }
         expect(response).to have_http_status(200)
-        expect(response).to render_template :edit
+        expect(response).to render_template(:edit)
       end
     end
   end
@@ -141,7 +200,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
     it "redirects to company#index" do
       delete :destroy, params: { id: company.id }
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to account_companies_path
+      expect(response).to redirect_to(account_companies_path)
     end
   end
 

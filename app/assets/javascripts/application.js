@@ -13,5 +13,12 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require ./stack_theme/core/app-menu
 //= require rails-ujs
+//= require Chart.bundle
+//= require chartkick
 //= require rating
+//= require comments_form
+//= require error_create_comment
+//= require error_create_contact
+//= require user_contacts

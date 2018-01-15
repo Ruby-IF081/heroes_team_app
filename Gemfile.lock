@@ -121,12 +121,23 @@ GEM
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    coffee-rails (4.2.2)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
+    comma (4.1.0)
+      activesupport (>= 4.0.0, < 5.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.3)
     database_cleaner (1.6.2)
+    declarative (0.0.10)
+    declarative-option (0.1.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.3.0)
@@ -138,6 +149,14 @@ GEM
     diff-lcs (1.3)
     docile (1.1.5)
     dynamic_form (1.1.4)
+    elasticsearch (6.0.0)
+      elasticsearch-api (= 6.0.0)
+      elasticsearch-transport (= 6.0.0)
+    elasticsearch-api (6.0.0)
+      multi_json
+    elasticsearch-transport (6.0.0)
+      faraday
+      multi_json
     equalizer (0.0.11)
     erubi (1.7.0)
     erubis (2.7.0)
@@ -170,6 +189,21 @@ GEM
       phantomjs (~> 2.1.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
+    google-api-client (0.19.4)
+      addressable (~> 2.5, >= 2.5.1)
+      googleauth (>= 0.5, < 0.7.0)
+      httpclient (>= 2.8.1, < 3.0)
+      mime-types (~> 3.0)
+      representable (~> 3.0)
+      retriable (>= 2.0, < 4.0)
+    googleauth (0.5.1)
+      faraday (~> 0.9)
+      jwt (~> 1.4)
+      logging (~> 2.0)
+      memoist (~> 0.12)
+      multi_json (~> 1.11)
+      os (~> 0.9)
+      signet (~> 0.7)
     gravatar_image_tag (1.2.0)
     groupdate (3.2.0)
       activesupport (>= 3)
@@ -177,6 +211,7 @@ GEM
     hashie (3.5.7)
     httparty (0.15.6)
       multi_xml (>= 0.5.2)
+    httpclient (2.8.3)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -188,6 +223,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (2.1.0)
+    jwt (1.5.6)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -204,11 +240,16 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
+    little-plugger (1.1.4)
+    logging (2.2.2)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
     loofah (2.1.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    memoist (0.16.0)
     meta-tags (2.7.0)
       actionpack (>= 3.2.0, < 5.3)
     method_source (0.8.2)
@@ -229,6 +270,7 @@ GEM
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    os (0.9.6)
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
@@ -245,6 +287,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.5.1)
+      byebug (~> 9.1)
+      pry (~> 0.10)
     public_suffix (3.0.1)
     puma (3.11.0)
     rack (2.0.3)
@@ -298,10 +343,15 @@ GEM
       codeclimate-engine-rb (~> 0.4.0)
       parser (>= 2.4.0.0, < 2.5)
       rainbow (~> 2.0)
+    representable (3.0.4)
+      declarative (< 0.1.0)
+      declarative-option (< 0.2.0)
+      uber (< 0.2.0)
     require_all (1.5.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    retriable (3.1.1)
     rspec-core (3.7.0)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
@@ -341,6 +391,10 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    searchkick (2.4.0)
+      activemodel (>= 4.1)
+      elasticsearch (>= 1)
+      hashie
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -352,6 +406,11 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.4, < 5)
+    signet (0.8.1)
+      addressable (~> 2.3)
+      faraday (~> 0.9)
+      jwt (>= 1.5, < 3.0)
+      multi_json (~> 1.10)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -387,9 +446,12 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2017.3)
       tzinfo (>= 1.0.0)
+    uber (0.1.0)
     uglifier (4.0.2)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.3.0)
+    validates_email_format_of (1.6.3)
+      i18n
     vcr (4.0.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -414,6 +476,10 @@ GEM
     wkhtmltopdf-binary (0.12.3.1)
     xpath (2.1.0)
       nokogiri (~> 1.3)
+    yt (0.32.1)
+      activesupport
+      yt-support (>= 0.1)
+    yt-support (0.1.3)
 
 PLATFORMS
   ruby
@@ -435,6 +501,8 @@ DEPENDENCIES
   carrierwave
   chartkick
   codeclimate-test-reporter (~> 1.0.0)
+  coffee-rails
+  comma (~> 4.1.0)
   database_cleaner
   devise
   dynamic_form
@@ -445,6 +513,7 @@ DEPENDENCIES
   font-awesome-sass (~> 4.7.0)
   fullcontact (= 0.13.0)
   gastly
+  google-api-client
   gravatar_image_tag
   groupdate
   httparty
@@ -458,6 +527,7 @@ DEPENDENCIES
   popper_js (~> 1.12.9)
   pretender
   pry (~> 0.10.3)
+  pry-byebug
   puma (~> 3.7)
   rails (~> 5.1.4)
   rails-controller-testing
@@ -467,6 +537,7 @@ DEPENDENCIES
   rspec-rails (~> 3.6)
   rubocop (~> 0.51.0)
   sass-rails (~> 5.0)
+  searchkick
   selenium-webdriver
   shoulda-matchers (~> 3.1)
   sidekiq
@@ -478,11 +549,13 @@ DEPENDENCIES
   sprockets-rails
   tzinfo-data (~> 1.2017, >= 1.2017.3)
   uglifier (>= 1.3.0)
+  validates_email_format_of
   vcr
   web-console (>= 3.3.0)
   webmock
   wicked_pdf
   wkhtmltopdf-binary
+  yt
 
 BUNDLED WITH
    1.16.1

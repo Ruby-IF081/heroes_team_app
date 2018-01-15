@@ -7,6 +7,7 @@ class Account::CompaniesController < ApplicationController
 
   def show
     @company = current_company
+    @videos = @company.videos.take(3)
   end
 
   def new
@@ -17,7 +18,7 @@ class Account::CompaniesController < ApplicationController
     @company = current_user.companies.build(company_params)
     FullContactCompanyProcessor.new(company: @company).process
     if @company.save
-      NewCompanyWorker.perform_async(@company.id)
+      perform_workers(@company)
       flash[:success] = "Company successfully created"
       redirect_to account_company_path(@company)
     else
@@ -50,6 +51,7 @@ class Account::CompaniesController < ApplicationController
     respond_to do |format|
       format.pdf do
         render pdf: "Company #{current_company.name}.pdf",
+               disposition: 'attachment',
                template: 'account/companies/show',
                layout: 'application',
                locals: { company: current_company }
@@ -60,10 +62,19 @@ class Account::CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:name, :domain)
+    params.require(:company).permit(:name, :domain, :founded, :overview, :approx_employees,
+                                    :youtube, :google, :twitter, :facebook, :linkedincompany,
+                                    :angellist, :owler, :crunchbasecompany, :pinterest, :klout)
   end
 
   def current_company
     current_user.companies.find(params[:id])
+  end
+
+  def perform_workers(new_company)
+    company_id = new_company.id
+    CompanyVideoWorker.perform_async(company_id)
+    NewCompanyWorker.perform_async(company_id)
+    CompanyDomainWorker.perform_async(company_id)
   end
 end

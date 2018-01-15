@@ -8,10 +8,12 @@ end
 gem 'brakeman', '~> 4.1', '>= 4.1.1'
 gem 'carrierwave'
 gem 'chartkick'
+gem 'comma', '~> 4.1.0'
 gem 'devise'
 gem 'dynamic_form'
 gem 'fullcontact', '0.13.0'
 gem 'gastly'
+gem 'google-api-client'
 gem 'gravatar_image_tag'
 gem 'groupdate'
 gem 'httparty'
@@ -28,15 +30,19 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'reek', '~> 4.7', '>= 4.7.3'
 gem 'rubocop', '~> 0.51.0', require: false
 gem 'sass-rails', '~> 5.0'
+gem 'searchkick'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'slim'
 gem 'uglifier', '>= 1.3.0'
+gem 'validates_email_format_of'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'yt'
 
 # Use SCSS for stylesheets
 gem 'bootstrap', '~> 4.0.0.beta2.1'
+gem 'coffee-rails'
 gem 'feathericon-sass'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass', '~> 4.7.0'
@@ -53,6 +59,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry', '~> 0.10.3'
+  gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 3.6'
   gem 'selenium-webdriver'
@@ -76,8 +83,9 @@ group :development do
 end
 
 group :test do
-  gem "codeclimate-test-reporter", "~> 1.0.0"
+  gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'simplecov', require: false
+  gem "codeclimate-test-reporter", "~> 1.0.0"
 end
 
 gem 'tzinfo-data', '~> 1.2017', '>= 1.2017.3'

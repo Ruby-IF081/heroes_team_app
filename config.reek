@@ -1,4 +1,8 @@
 "app/controllers":
+  DuplicateMethodCall:
+    max_calls: 2
+  TooManyMethods:
+    max_methods: 16
   TooManyStatements:
     max_statements: 20
   NestedIterators:
@@ -7,8 +11,6 @@
     enabled: false
   InstanceVariableAssumption:
     enabled: false
-  TooManyStatements:
-    max_statements: 6
   NilCheck:
     enabled: false
   PrimaDonnaMethod:
@@ -33,4 +35,7 @@ exclude_paths:
 UtilityFunction:
   public_methods_only: true
 TooManyConstants:
-  max_constants: 12
+  max_constants: 14
+UncommunicativeVariableName:
+  accept:
+    - !ruby/regexp /q/

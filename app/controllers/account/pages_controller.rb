@@ -1,12 +1,15 @@
 class Account::PagesController < ApplicationController
+  PER_PAGE = 12
+
   def index
-    @pages = collection.by_rating.page(params[:page]).per(10)
+    @partial = whitelisted_partial || 'pages_list'
+    @pages = params[:q].blank? ? list_without_params : list_with_params
     @company = parent
   end
 
   def show
-    @page    = resource
-    @company = parent
+    @page     = resource
+    @company  = parent
   end
 
   def rate
@@ -32,5 +35,20 @@ class Account::PagesController < ApplicationController
 
   def collection
     parent.pages
+  end
+
+  def list_without_params
+    collection.by_rating.page(params[:page]).per(PER_PAGE)
+  end
+
+  def list_with_params
+    Page.search(params[:q],
+                where: { company_id: parent.id },
+                page: params[:page],
+                per_page: PER_PAGE)
+  end
+
+  def whitelisted_partial
+    %w[pages_list pages_card].detect { |str| str == params[:view] }
   end
 end
