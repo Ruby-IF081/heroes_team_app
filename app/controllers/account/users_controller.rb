@@ -59,7 +59,7 @@ class Account::UsersController < ApplicationController
   end
 
   def download
-    send_data collection.to_comma, filename: "Users #{Date.today}.csv"
+    send_data collection.to_comma, filename: "Users #{Date.today}.csv", disposition: 'attachment'
   end
 
   private
