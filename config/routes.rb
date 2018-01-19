@@ -27,13 +27,13 @@ Rails.application.routes.draw do
     resource :my_tenant, only: %i[show edit update]
     resources :analytics, only: %i[index]
     resources :users do
-      member do 
+      member do
         post :impersonate
       end
-      collection do  
+      collection do
         post :stop_impersonating
         get  :download
-      end  
+      end
     end
     get 'chart-for-users-by-week',     to: 'charts#registered_users'
     get 'chart-for-companies-by-week', to: 'charts#created_companies'
