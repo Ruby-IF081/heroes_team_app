@@ -121,6 +121,8 @@ GEM
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+    comma (4.1.0)
+      activesupport (>= 4.0.0, < 5.2)
     concurrent-ruby (1.0.5)
     connection_pool (2.2.1)
     crack (0.4.3)
@@ -435,6 +437,7 @@ DEPENDENCIES
   carrierwave
   chartkick
   codeclimate-test-reporter (~> 1.0.0)
+  comma (~> 4.1.0)
   database_cleaner
   devise
   dynamic_form

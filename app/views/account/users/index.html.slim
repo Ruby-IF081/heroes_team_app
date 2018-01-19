@@ -11,7 +11,11 @@
             = render_breadcrumbs({'Dashboard' => account_root_url,
                   'Users' => nil})
       .content-header-right.text-md-right.col-md-6.col-12
-        = link_to 'New user', new_account_user_path, class: 'btn btn-primary'
+        .row
+          .offset-md-4.col-md-1
+            = link_to 'Add new', new_account_user_path, class: 'btn btn-primary'
+          .offset-md-1.col-md-1
+            = link_to 'Users CSV', download_account_user_path(@users), class: 'btn btn-info'
   .content-body
     .section
       .col-md-12

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :users do
       post :impersonate, on: :member
       post :stop_impersonating, on: :collection
+      get  :download, on: :member
     end
     get 'chart-for-users-by-week',     to: 'charts#registered_users'
     get 'chart-for-companies-by-week', to: 'charts#created_companies'

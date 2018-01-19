@@ -38,4 +38,12 @@ class User < ApplicationRecord
   def privileged?
     admin? || super_admin?
   end
+
+  comma do
+    id
+    full_name
+    email
+    role
+    created_at
+  end
 end
