@@ -45,6 +45,15 @@
             .card-body
               .card-text
         /! / Page info
+        .card
+          .card-header
+            h4.card-title= "#{@page.title} comments"
+          .card-content.collapse.show
+            .card-body
+              .card-text
+                = render 'account/comments/comment_form', company: @company, page: @page
+                ul
+                  = render 'account/comments/comment', commentable: @page, company: @company
 #imageModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLongTitle" role="dialog" tabindex="-1"
   .modal-dialog.image-modal-content role="document"
     .modal-content

@@ -17,3 +17,4 @@
 //= require Chart.bundle
 //= require chartkick
 //= require rating
+//= require comments

@@ -67,3 +67,11 @@
           .card-content
             .card-body
               = render 'account/companies/html/social_links', company: @company
+        .card
+          .card-header
+            h4.card-title= "#{@company.name} comments"
+          .card-content
+            .card-body
+              = render 'account/comments/comment_form', company: @company, page: nil
+              .comments
+                = render 'account/comments/comment', commentable: @company

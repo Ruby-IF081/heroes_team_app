@@ -1,0 +1,6 @@
+- commentable.comments.each do |comment|
+  div.comment id="comment-#{comment.id}"
+    = comment.user_id
+    h4
+      small= comment.updated_at
+    p= comment.body

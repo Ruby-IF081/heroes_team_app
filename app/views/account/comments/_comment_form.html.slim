@@ -1,0 +1,5 @@
+.comment-form
+  = form_for [:account, company, page, Comment.new], remote: true do |f|
+    = f.text_area :body, placeholder: "Add a comment"
+    br
+    = f.submit "Add Comment"
