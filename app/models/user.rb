@@ -39,15 +39,11 @@ class User < ApplicationRecord
     admin? || super_admin?
   end
 
-  def user_created
-    created_at.strftime("%d %b %y %H:%M")
-  end
-
   comma do
     id
     full_name
     email
     role
-    user_created
+    created_at { |created_at| created_at.strftime("%d %b %y %H:%M") }
   end
 end
