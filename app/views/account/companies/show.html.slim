@@ -73,8 +73,6 @@
           .card-content
             .card-body
               .comments
-                = render 'account/comments/comment_form',  commentable: @company, page: nil
-                /= render partial:'account/comments/comment' , collection: @company.comments.reсent, as: :comment,
-                        locals: {commentable: @company, page: nil }
-                = render partial: 'account/comments/comment', collection: @company.comments.reсent, as: :comment,
-                        locals: {commentable: @company}
+                = render 'account/comments/comment_form',  company: @company, page: nil
+                = render partial:'account/comments/comment' , collection: @company.comments.reсent, as: :comment,
+                        locals: {company: @company, page: nil }

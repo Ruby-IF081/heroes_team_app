@@ -7,11 +7,9 @@ class Account::CommentsController < ApplicationController
     # @comment = current_user.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      # render :partial => "account/comments/comment",
-      #        :locals => { :comment => @comment, company: @commentable, page: nil },
-      #        :layout => false, :status => :created
-      render partial: 'account/comments/comment', collection: @commentable.comments.reсent, as: :comment,
-             locals: { company: @commentable, page: nil }, :layout => false, :status => :created
+      render :partial => "account/comments/comment",
+             :locals => { :comment => @comment, company: @commentable, page: nil },
+             :layout => false, :status => :created
     else
       render js: "alert('Invalid comment!');"
     end
