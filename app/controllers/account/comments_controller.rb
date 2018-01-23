@@ -4,25 +4,40 @@ class Account::CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new(comment_params)
+    # @comment = current_user.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      respond_to do |format|
-        format.js   {}
-      end
+      render :partial => "account/comments/comment", :locals => { :comment => @comment },
+             :layout => false, :status => :created
     else
-      render js: "alert('Your comment is too short!');"
+      render js: "alert('Invalid comment!');"
+    end
+  end
+
+  def destroy
+    @comment = resource
+    if @comment.destroy
+      render json: @comment, status: :ok
+    else
+      render js: "alert('error deleting comment');"
     end
   end
 
   private
 
+  def resource
+    Comment.find(params[:id])
+  end
+
   def comment_params
-    params.require(:comment).permit(:body)
+    params.require(:comment).permit(:user_id, :body, :commentable_type, :commentable_id)
   end
 
   def find_commentable
-    find_company = current_companies.find_by_id(params[:company_id])
-    @commentable = find_company if params[:company_id]
-    @commentable = find_company.pages.find_by_id(params[:page_id]) if params[:page_id]
+    company_id = params[:company_id]
+    page_id = params[:page_id]
+    find_company = current_companies.find_by_id(company_id)
+    @commentable = find_company if company_id
+    @commentable = find_company.pages.find_by_id(page_id) if page_id
   end
 end

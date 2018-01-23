@@ -72,6 +72,7 @@
             h4.card-title= "#{@company.name} comments"
           .card-content
             .card-body
-              = render 'account/comments/comment_form', company: @company, page: nil
               .comments
-                = render 'account/comments/comment', commentable: @company
+                = render 'account/comments/comment_form',  company: @company, page: nil
+                = render partial:'account/comments/comment' , collection: @company.comments.reсent, as: :comment,
+                        locals: {company: @company, page: nil }

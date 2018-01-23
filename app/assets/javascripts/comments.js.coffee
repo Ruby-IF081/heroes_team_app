@@ -1,5 +1,5 @@
 jQuery ->
-# Create a comment
+  # Create a comment
   $(".comment-form")
     .on "ajax:beforeSend", (evt, xhr, settings) ->
       $(this).find('textarea')
@@ -10,3 +10,14 @@ jQuery ->
         .removeClass('uneditable-input')
         .removeAttr('disabled', 'disabled')
         .val('');
+      $('xhr.responseText').insertAfter($(this)).show('slow')
+
+
+  # Delete a comment
+  $(document)
+    .on "ajax:beforeSend", ".comment", ->
+      $(this).fadeTo('fast', 0.5)
+    .on "ajax:success", ".comment", ->
+      $(this).hide('fast')
+    .on "ajax:error", ".comment", ->
+      $(this).fadeTo('fast', 1)
