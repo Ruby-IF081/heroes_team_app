@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'home', to: 'home#index'
-  get 'pricing', to: 'home#pricing'
+  get 'home',     to: 'home#index'
+  get 'pricing',  to: 'home#pricing'
   get 'about-us', to: 'home#about_us'
   get 'contacts', to: 'home#contacts'
 
@@ -13,13 +13,11 @@ Rails.application.routes.draw do
   }
 
   namespace :account do
-    # concern :commentable do
-    #   resources :comments, only: %i[create destroy]
-    # end
+    resource :tokens, only: %i[create destroy]
     root 'dashboard#index'
-    resources :companies do
-      resources :pages, only: %i[show index] do
-        patch :rate, on: :member
+    resources    :companies do
+      resources  :pages, only: %i[show index] do
+        patch    :rate,  on: :member
       end
       get :download, on: :member
       collection do
@@ -31,8 +29,13 @@ Rails.application.routes.draw do
     resource :my_tenant, only: %i[show edit update]
     resources :analytics, only: %i[index]
     resources :users do
-      post :impersonate, on: :member
-      post :stop_impersonating, on: :collection
+      member do
+        post :impersonate
+      end
+      collection do
+        post :stop_impersonating
+        get  :download
+      end
     end
     get 'chart-for-users-by-week',     to: 'charts#registered_users'
     get 'chart-for-companies-by-week', to: 'charts#created_companies'
@@ -45,4 +48,10 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+
+  namespace :api, defaults: { format: :json } do
+    as :user do
+      resources :companies, only: :index
+    end
+  end
 end
