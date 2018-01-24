@@ -11,15 +11,9 @@ describe User, type: :model do
     expect(user.full_name).to eq('Winston Churchill')
   end
 
-  it "admin? method should be correct" do
-    expect(user.admin?).to be false
-  end
-
-  it "super_admin? method should be correct" do
-    expect(user.super_admin?).to be false
-  end
-
   it "privileged? method should be correct" do
     expect(user.privileged?).to be false
+    user.role = User::ADMIN_ROLE
+    expect(user.privileged?).to be true
   end
 end
