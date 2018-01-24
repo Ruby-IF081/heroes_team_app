@@ -10,6 +10,11 @@
           = render_breadcrumbs({ 'Dashboard' => account_root_path,
                                  @company.name => account_company_path(@company),
                                  'Pages' => nil })
+    .content-header-right.text-md-right.col-md-6.col-12
+      .form-group
+        .btn-icon.btn
+          #new_page_ajax
+            = button_to  "Add page", new_account_company_page_path, remote: true, :method => "get"
   .content-body
     - if @company.pages.empty?
       section.row

@@ -23,6 +23,12 @@ class Account::PagesController < ApplicationController
     end
   end
 
+  def new
+    @page = Page.new
+  end
+
+  def create
+  end
   private
 
   def parent

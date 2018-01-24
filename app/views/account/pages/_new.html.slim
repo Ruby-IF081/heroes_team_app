@@ -1,0 +1,5 @@
+= simple_form_for @page, url: account_company_pages_url, method: 'post', remote: true do |f|
+  = f.input :title
+  = f.input :source_url
+  = f.association :company, collection: current_user.companies.ordered, include_blank: false
+  = f.submit, 'Add page', class: 'btn btn-primary'

@@ -15,9 +15,9 @@ Rails.application.routes.draw do
   namespace :account do
     resource :tokens, only: %i[create destroy]
     root 'dashboard#index'
-    resources    :companies do
-      resources  :pages, only: %i[show index] do
-        patch    :rate,  on: :member
+    resources :companies do
+      resources :pages, only: %i[show index new create] do
+        patch :rate, on: :member
       end
       resources :videos, only: %i[index]
       get :download, on: :member
