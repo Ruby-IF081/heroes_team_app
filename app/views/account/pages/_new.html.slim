@@ -1,11 +1,11 @@
 .modal-header
   button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
-  h3#ajax_page_add Modal header
+  h3#myModalLabel Modal header
 .modal-body
   = simple_form_for [:account, @company, @page], remote: true do |f|
     = f.input :title
     = f.input :source_url
-    = f.submit
 .modal-footer
   button.btn aria-hidden="true" data-dismiss="modal"  Close
   button.btn.btn-primary Save changes
+    = f.submit
