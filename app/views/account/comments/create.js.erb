@@ -1,0 +1,5 @@
+var comment = $('.comment');
+comment.append($('<%= escape_javascript(render partial: 'account/comments/comment',
+                                              locals: { comment: @comment },
+                                              layout: false,
+                                              status: :created) %>'))

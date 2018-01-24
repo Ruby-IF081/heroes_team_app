@@ -13,12 +13,12 @@ Rails.application.routes.draw do
   }
 
   namespace :account do
-    concern :commentable do
-      resources :comments, only: %i[create destroy]
-    end
+    # concern :commentable do
+    #   resources :comments, only: %i[create destroy]
+    # end
     root 'dashboard#index'
-    resources :companies, concerns: :commentable do
-      resources :pages, concerns: :commentable, only: %i[show index] do
+    resources :companies do
+      resources :pages, only: %i[show index] do
         patch :rate, on: :member
       end
       get :download, on: :member
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         resource :chrome_extensions, only: %i[new create]
       end
     end
+    resources :comments, only: %i[create destroy]
     resources :tenants, only: %i[show index]
     resource :my_tenant, only: %i[show edit update]
     resources :analytics, only: %i[index]

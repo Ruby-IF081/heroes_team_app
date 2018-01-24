@@ -52,9 +52,11 @@
             .card-body
               .card-text
                 .comments
-                  = render 'account/comments/comment_form', company: @company, page: @page
-                  = render partial: 'account/comments/comment', collection: @page.comments.reсent, as: :comment,
-                          locals: { company: @company, page: @page }
+                  = render partial: 'account/comments/comment',
+                          collection: @page.comments, as: :comment
+                .comment
+                .comment-form
+                  = render 'account/comments/comment_form', commentable: @page
 #imageModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLongTitle" role="dialog" tabindex="-1"
   .modal-dialog.image-modal-content role="document"
     .modal-content

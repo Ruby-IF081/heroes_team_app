@@ -7,8 +7,6 @@
     enabled: false
   InstanceVariableAssumption:
     enabled: false
-  TooManyStatements:
-    max_statements: 6
   NilCheck:
     enabled: false
   PrimaDonnaMethod:

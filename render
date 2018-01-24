@@ -1,0 +1,17 @@
+
+[1mFrom:[0m /home/gufy/workspace/heroes_team_app/app/controllers/account/comments_controller.rb @ line 10 Account::CommentsController#create:
+
+     [1;34m5[0m: [32mdef[0m [1;34mcreate[0m
+     [1;34m6[0m:   @comment = @commentable.comments.new(comment_params)
+     [1;34m7[0m:   [1;34m# @comment = current_user.comments.build(comment_params)[0m
+     [1;34m8[0m:   @comment.user_id = current_user.id
+     [1;34m9[0m:   [32mif[0m @comment.save
+ => [1;34m10[0m:     binding.pry
+    [1;34m11[0m:     render [33m:partial[0m => [31m[1;31m"[0m[31maccount/comments/comment[1;31m"[0m[31m[0m,
+    [1;34m12[0m:            [33m:locals[0m => { [33m:comment[0m => @comment},
+    [1;34m13[0m:            [33m:layout[0m => [1;36mfalse[0m, [33m:status[0m => [33m:created[0m
+    [1;34m14[0m:   [32melse[0m
+    [1;34m15[0m:     render [35mjs[0m: [31m[1;31m"[0m[31malert('Invalid comment!');[1;31m"[0m[31m[0m
+    [1;34m16[0m:   [32mend[0m
+    [1;34m17[0m: [32mend[0m
+

@@ -32,6 +32,18 @@ RSpec.describe Account::CompaniesController, type: :controller do
       expect(response).to have_http_status(200)
       expect(response).to render_template(:show)
     end
+
+    context 'contains the comments' do
+      let!(:comment) { create :comment, commentable: company }
+      render_views
+      it 'should contain created comment' do
+        # binding.pry
+
+        get :show, params: { id: company.id }
+        expect(response.body).to have_content(comment.body)
+        expect(response.body).to match(comment.body)
+      end
+    end
   end
 
   describe "GET #edit" do

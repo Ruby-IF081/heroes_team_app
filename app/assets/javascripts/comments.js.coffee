@@ -1,5 +1,5 @@
-jQuery ->
-  # Create a comment
+$ ->
+  # Disable the form while creating a form
   $(".comment-form")
     .on "ajax:beforeSend", (evt, xhr, settings) ->
       $(this).find('textarea')
@@ -10,14 +10,11 @@ jQuery ->
         .removeClass('uneditable-input')
         .removeAttr('disabled', 'disabled')
         .val('');
-      $('xhr.responseText').insertAfter($(this)).show('slow')
-
-
   # Delete a comment
   $(document)
-    .on "ajax:beforeSend", ".comment", ->
+    .on "ajax:beforeSend", ".comment-list", ->
       $(this).fadeTo('fast', 0.5)
-    .on "ajax:success", ".comment", ->
+    .on "ajax:success", ".comment-list", ->
       $(this).hide('fast')
-    .on "ajax:error", ".comment", ->
+    .on "ajax:error", ".comment-list", ->
       $(this).fadeTo('fast', 1)

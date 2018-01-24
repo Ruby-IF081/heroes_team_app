@@ -1,8 +1,7 @@
 FactoryBot.define do
-  factory :comment do
-    commentable_type "MyString"
-    commentable_id 1
-    user_id 1
-    body "MyText"
+  factory :comment, class: Comment do
+    association :commentable, factory: :company
+    association :user, factory: :user
+    body { Faker::Lorem.paragraphs(1).join }
   end
 end
