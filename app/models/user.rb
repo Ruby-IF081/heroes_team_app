@@ -39,6 +39,19 @@ class User < ApplicationRecord
     admin? || super_admin?
   end
 
+  def generate_auth_token
+    token = SecureRandom.urlsafe_base64
+    assign_attributes(auth_token: token, token_created_at: Time.zone.now)
+  end
+
+  def deactivate_token
+    update(auth_token: nil, token_created_at: nil)
+  end
+
+  def authenticate_token_creation
+    token_created_at.is_a?(ActiveSupport::TimeWithZone) && token_created_at >= 1.month.ago
+  end
+
   comma do
     id
     full_name
