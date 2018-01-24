@@ -25,10 +25,12 @@ class Account::PagesController < ApplicationController
 
   def new
     @page = Page.new
+    @company = parent
   end
 
   def create
   end
+
   private
 
   def parent

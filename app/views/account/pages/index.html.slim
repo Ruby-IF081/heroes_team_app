@@ -14,7 +14,7 @@
       .form-group
         .btn-icon.btn
           #new_page_ajax
-            = button_to  "Add page", new_account_company_page_path, remote: true, :method => "get"
+            = link_to  "Add page", new_account_company_page_path, remote: true
   .content-body
     - if @company.pages.empty?
       section.row

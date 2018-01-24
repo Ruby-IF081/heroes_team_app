@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resource :tokens, only: %i[create destroy]
     root 'dashboard#index'
     resources :companies do
-      resources :pages, only: %i[show index new create] do
+      resources :pages, except: %i[edit update destroy] do
         patch :rate, on: :member
       end
       resources :videos, only: %i[index]
