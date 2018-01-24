@@ -10,4 +10,10 @@ describe User, type: :model do
   it 'user full name should be correct' do
     expect(user.full_name).to eq('Winston Churchill')
   end
+
+  it "privileged? method should be correct" do
+    expect(user.privileged?).to be false
+    user.role = User::ADMIN_ROLE
+    expect(user.privileged?).to be true
+  end
 end

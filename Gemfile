@@ -8,6 +8,7 @@ end
 gem 'brakeman', '~> 4.1', '>= 4.1.1'
 gem 'carrierwave'
 gem 'chartkick'
+gem 'comma', '~> 4.1.0'
 gem 'devise'
 gem 'dynamic_form'
 gem 'fullcontact', '0.13.0'
