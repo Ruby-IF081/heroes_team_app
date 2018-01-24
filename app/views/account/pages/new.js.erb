@@ -1,1 +1,1 @@
-$('#new_page_ajax').html("<%= render(partial: 'new') %>").dialog(modal: true);
+$('#ajax_page_add').html("<%= escape_javascript(render(partial: 'new')) %>").dialog({ modal: true });

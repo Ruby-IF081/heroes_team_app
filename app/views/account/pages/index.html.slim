@@ -13,8 +13,8 @@
     .content-header-right.text-md-right.col-md-6.col-12
       .form-group
         .btn-icon.btn
-          #new_page_ajax
-            = link_to  "Add page", new_account_company_page_path, remote: true
+          #modal-window.modal.hide.fade aria-hidden="true" aria-labelledby="ajax_page_add" role="dialog" 
+            = link_to  "Add page", new_account_company_page_path, {remote: true, 'data-toggle':  "modal", 'data-target': '#modal-window'}
   .content-body
     - if @company.pages.empty?
       section.row

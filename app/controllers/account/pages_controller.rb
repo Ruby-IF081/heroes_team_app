@@ -29,6 +29,7 @@ class Account::PagesController < ApplicationController
   end
 
   def create
+    puts "c-----r------e-----a------t----e"
   end
 
   private
