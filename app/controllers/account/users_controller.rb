@@ -65,7 +65,10 @@ class Account::UsersController < ApplicationController
   private
 
   def resource_params
-    params.require(:user).permit(:first_name, :last_name, :email, :role)
+    params_keys = %i[first_name last_name email]
+    strong_params = params.require(:user)
+    params_keys.push(:role) if strong_params[:role].in?(available_roles)
+    strong_params.permit(params_keys)
   end
 
   def admin_collection
