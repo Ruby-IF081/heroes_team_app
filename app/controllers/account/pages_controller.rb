@@ -29,10 +29,14 @@ class Account::PagesController < ApplicationController
   end
 
   def create
-    puts "c-----r------e-----a------t----e"
+    @page = Page.new(page_params)
   end
 
   private
+
+  def page_params
+    params.require(:page).permit(:title, :source_url, :company_id)
+  end
 
   def parent
     @company ||= current_user.companies.find(params[:company_id])

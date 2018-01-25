@@ -1,11 +1,16 @@
-.modal-header
-  button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
-  h3#myModalLabel Modal header
-.modal-body
-  = simple_form_for [:account, @company, @page], remote: true do |f|
-    = f.input :title
-    = f.input :source_url
-.modal-footer
-  button.btn aria-hidden="true" data-dismiss="modal"  Close
-  button.btn.btn-primary Save changes
-    = f.submit
+#new-page-dialog.modal.fade[tabindex="-1" role="dialog" aria-labelledby="new-page-title" aria-hidden="true"]
+  .modal-dialog[role="document"]
+    .modal-content
+      .modal-header
+        h3#new-page-title.modal-title New Page Form
+        button.close[aria-hidden="true" data-dismiss="modal" type="button" x ]
+          span[aria-hidden="true"] &times;
+
+      = simple_form_for [:account, @company, @page], remote: true do |f|
+        .modal-body
+          = f.input :title
+          = f.input :source_url
+
+        .modal-footer
+          button.btn.btn-secondary[type="button" data-dismiss="modal"] Close
+          = f.button :submit, class: 'btn btn-primary', data: { dismiss: :modal }
