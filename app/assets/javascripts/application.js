@@ -17,4 +17,4 @@
 //= require Chart.bundle
 //= require chartkick
 //= require rating
-//= require comments
+//= require comments_form

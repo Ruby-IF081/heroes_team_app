@@ -22,6 +22,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
   end
 
   describe "GET #show" do
+    let!(:comment) { create :comment, commentable: company }
     it "assigns the requested company to @company" do
       get :show, params: { id: company.id }
       expect(assigns(:company)).to eq(company)
@@ -34,14 +35,31 @@ RSpec.describe Account::CompaniesController, type: :controller do
     end
 
     context 'contains the comments' do
-      let!(:comment) { create :comment, commentable: company }
       render_views
-      it 'should contain created comment' do
-        # binding.pry
-
+      it 'should contain comment body' do
         get :show, params: { id: company.id }
         expect(response.body).to have_content(comment.body)
-        expect(response.body).to match(comment.body)
+      end
+    end
+    context 'when user sale' do
+      render_views
+      it 'comment should not contain delete link' do
+        get :show, params: { id: company.id }
+        expect(response.body).not_to have_link(href: account_comment_path(comment))
+      end
+    end
+    context 'when user admin' do
+      before :each do
+        @admin = FactoryBot.create(:user, :admin)
+        sign_out company.user
+        sign_in @admin
+      end
+      let!(:admin_company) { create :company, user_id: @admin.id }
+      let!(:admin_comment) { create :comment, commentable: admin_company, user_id: @admin.id }
+      render_views
+      it 'comment should contain delete link' do
+        get :show, params: { id: admin_company.id }
+        expect(response.body).to have_link(href: account_comment_path(admin_comment))
       end
     end
   end

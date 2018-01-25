@@ -13,9 +13,6 @@ Rails.application.routes.draw do
   }
 
   namespace :account do
-    # concern :commentable do
-    #   resources :comments, only: %i[create destroy]
-    # end
     root 'dashboard#index'
     resources :companies do
       resources :pages, only: %i[show index] do

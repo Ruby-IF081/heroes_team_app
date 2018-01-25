@@ -4,13 +4,9 @@ class Account::CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     if @comment.save
-      respond_to do |format|
-        format.js
-      end
+      respond_to { |format| format.js }
     else
-      respond_to do |format|
-        format.js { render js: "alert('Comment is invalid!');" }
-      end
+      respond_to { |format| format.js { render js: "alert('Comment is invalid!');" } }
     end
   end
 
@@ -18,13 +14,9 @@ class Account::CommentsController < ApplicationController
     @comment = resource
     if current_user.privileged?
       @comment.destroy
-      respond_to do |format|
-        format.js { render json: @comment, status: :ok }
-      end
+      respond_to { |format| format.js }
     else
-      respond_to do |format|
-        format.js { render js: "alert('No rights to delete this comment');" }
-      end
+      respond_to { |format| format.js { render js: "alert('No rights to delete this comment');" } }
     end
   end
 

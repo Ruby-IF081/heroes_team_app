@@ -1,4 +1,6 @@
 "app/controllers":
+  DuplicateMethodCall:
+    max_calls: 2
   TooManyStatements:
     max_statements: 20
   NestedIterators:

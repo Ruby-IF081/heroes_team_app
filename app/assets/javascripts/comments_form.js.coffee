@@ -10,11 +10,3 @@ $ ->
         .removeClass('uneditable-input')
         .removeAttr('disabled', 'disabled')
         .val('');
-  # Delete a comment
-  $(document)
-    .on "ajax:beforeSend", ".comment-list", ->
-      $(this).fadeTo('fast', 0.5)
-    .on "ajax:success", ".comment-list", ->
-      $(this).hide('fast')
-    .on "ajax:error", ".comment-list", ->
-      $(this).fadeTo('fast', 1)
