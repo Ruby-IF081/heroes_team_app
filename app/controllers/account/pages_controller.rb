@@ -29,6 +29,7 @@ class Account::PagesController < ApplicationController
   end
 
   def create
+    binding.pry
     @page = Page.new(page_params)
   end
 
