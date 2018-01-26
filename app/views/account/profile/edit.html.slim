@@ -1,6 +1,11 @@
 - set_meta_tags title: "Edit - #{@profile.first_name} #{@profile.last_name} information",
         description: 'Edit user data'
 h1.col-md-6.col-md-offset-3 Edit Profile
+.row.breadcrumbs-top
+  .breadcrumb-wrapper.col-12
+    = render_breadcrumbs({ 'Dashboard' => account_root_path,
+                           'Profile' => account_profile_path,
+                           'Edit profile' => nil })
 = simple_form_for @profile, url: account_profile_path,
                             defaults: { input_html: { class: 'form-control' } } do |f|
   section.row

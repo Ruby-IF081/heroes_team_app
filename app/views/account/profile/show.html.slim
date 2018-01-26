@@ -5,6 +5,10 @@
     .content-header-left.col-md-6.col-12.mb-2
       h3.content-header-title.mb-0
         = @profile.full_name
+      .row.breadcrumbs-top
+        .breadcrumb-wrapper.col-12
+          = render_breadcrumbs({ 'Dashboard' => account_root_path,
+                                 'Profile' => nil })
     .content-header-right.text-md-right.col-md-6.col-12
       = link_to edit_account_profile_path,
                 class: 'button btn-icon btn btn-grey-blue btn-danger-2 btn-round'

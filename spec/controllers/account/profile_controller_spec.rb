@@ -8,7 +8,7 @@ RSpec.describe Account::ProfileController, type: :controller do
 
   describe "GET #show" do
     it "renders the #show view" do
-      get :show, params: { id: user.id }
+      get :show, params: { id: @user.id }
       expect(response).to have_http_status(200)
       expect(response).to render_template(:show)
     end
@@ -39,7 +39,7 @@ RSpec.describe Account::ProfileController, type: :controller do
                                      last_name: 'Lastname',
                                      email: 'email@mail.com' } }
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to account_user_path(@user)
+      expect(response).to redirect_to account_profile_path
       expect(controller).to set_flash[:success]
     end
   end
