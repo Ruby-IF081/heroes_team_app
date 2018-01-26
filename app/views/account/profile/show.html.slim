@@ -1,4 +1,80 @@
-- set_meta_tags title: "#{@profile.first_name} #{@profile.last_name} - Overview",
-                description: "#{@profile.first_name} #{@profile.last_name} info"
-
-
+- set_meta_tags title: "#{@profile.full_name} - Overview",
+                description: "#{@profile.full_name} info"
+.content-wrapper
+  .content-header.row
+    .content-header-left.col-md-6.col-12.mb-2
+      h3.content-header-title.mb-0
+        = @profile.full_name
+    .content-header-right.text-md-right.col-md-6.col-12
+      = link_to edit_account_profile_path,
+                class: 'button btn-icon btn btn-grey-blue btn-danger-2 btn-round'
+        i.fa.fa-pencil-square-o
+  .content-body
+    section.row
+      .col-sm-12
+        #overview.card
+          .card-header
+            h4.card-title Profile
+          .card-content
+            .card-body
+              .row
+                .card-image.col-sm-2
+                  = image_tag(@profile.avatar, :size => 120)
+                .card-text.col-sm-8
+                  .row
+                    .card-text.col-sm-3
+                      h6 User-email:
+                    .card-text.col-sm-9
+                      = @profile.email
+                  .row
+                    .card-text.col-sm-3
+                      h6 Phone number:
+                    .card-text.col-sm-9
+                      = @profile.phone
+                  .row
+                    .card-text.col-sm-3
+                      h6 Date of birth:
+                    .card-text.col-sm-9
+                      = @profile.date_of_birth
+                  .row
+                    .card-text.col-sm-3
+                      h6 Tenant:
+                    .card-text.col-sm-9
+                      = @profile.tenant_name
+                  .row
+                    .card-text.col-sm-3
+                      h6 Role:
+                    .card-text.col-sm-9
+                      = @profile.role
+    .card
+      - if @profile.work?
+        .card-header
+          h4.card-title Work
+        .card-content.collapse.show
+          .card-body
+            .card-text
+              = @profile.work
+    .card
+      - if @profile.education?
+        .card-header
+          h4.card-title Education
+        .card-content.collapse.show
+          .card-body
+            .card-text
+              = @profile.education
+    .card
+      - if @profile.skils?
+        .card-header
+          h4.card-title Professional skils
+        .card-content.collapse.show
+          .card-body
+            .card-text
+              = @profile.skils
+    .card
+      - if @profile.about?
+        .card-header
+          h4.card-title About you
+        .card-content.collapse.show
+          .card-body
+            .card-text
+              = @profile.about
