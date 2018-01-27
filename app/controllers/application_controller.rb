@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   impersonates :user
   helper_method :available_roles
-  before_action :set_timezone
 
   layout :layout_by_resource
 
@@ -36,11 +35,5 @@ class ApplicationController < ActionController::Base
 
   def available_roles
     current_user.admin? ? User::ROLES.reject { |el| el.eql?(User::SUPER_ADMIN_ROLE) } : User::ROLES
-  end
-
-  private
-
-  def set_timezone
-    Time.zone = ActiveSupport::TimeZone['Kyiv']
   end
 end

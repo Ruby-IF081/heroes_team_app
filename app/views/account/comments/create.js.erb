@@ -1,4 +1,4 @@
-$('.comment').append($('<%= escape_javascript(render partial: 'account/comments/comment',
+$('.comments').append($('<%= escape_javascript(render partial: 'account/comments/comment',
                                               locals: { comment: @comment },
                                               layout: false,
                                               status: :created) %>'))

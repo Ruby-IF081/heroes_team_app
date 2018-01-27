@@ -48,16 +48,7 @@
         .card
           .card-header
             h4.card-title= "#{@page.title} comments"
-          .card-content.collapse.show
-            .card-body
-              .card-text
-                .container
-                  .comments
-                    = render partial: 'account/comments/comment',
-                            collection: @page.comments, as: :comment
-                  .comment
-                  .comment-form
-                    = render 'account/comments/comment_form', commentable: @page
+          = render partial: 'account/comments/comments', locals: { object: @page }
 #imageModal.modal.fade aria-hidden="true" aria-labelledby="exampleModalLongTitle" role="dialog" tabindex="-1"
   .modal-dialog.image-modal-content role="document"
     .modal-content

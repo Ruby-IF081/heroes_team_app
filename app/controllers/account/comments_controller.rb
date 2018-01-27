@@ -6,7 +6,7 @@ class Account::CommentsController < ApplicationController
     if @comment.save
       respond_to_format
     else
-      respond_to_format render js: "alert('Comment is invalid!');"
+      respond_to_format(render(js: "alert('Comment is invalid!');"))
     end
   end
 
@@ -16,7 +16,7 @@ class Account::CommentsController < ApplicationController
       @comment.destroy
       respond_to_format
     else
-      respond_to_format render js: "alert('No rights to delete this comment');"
+      respond_to_format(render(js: "alert('No rights to delete this comment');"))
     end
   end
 
