@@ -28,8 +28,4 @@ module ApplicationHelper
       reverse: true
     }
   end
-
-  def timeago(time)
-    content_tag(:span, time.in_time_zone('Kyiv').strftime("%m/%d/%Y at %R"))
-  end
 end

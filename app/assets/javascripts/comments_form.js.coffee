@@ -10,3 +10,8 @@ $ ->
         .removeClass('uneditable-input')
         .removeAttr('disabled', 'disabled')
         .val('');
+    .on "ajax:error", (evt, data, status, xhr) ->
+      $(this).find('textarea')
+        .addClass('uneditable-input')
+        .attr('disabled', 'disabled')
+        .val("Error occurred!! Please refresh the page");
