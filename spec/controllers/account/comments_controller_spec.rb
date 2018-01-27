@@ -6,6 +6,7 @@ RSpec.describe Account::CommentsController, type: :controller do
     sign_in @user
   end
   describe 'POST create' do
+    render_views
     context 'with valid attributes' do
       let!(:val_comment) { build :comment }
       it 'should create a new comment' do
@@ -32,6 +33,7 @@ RSpec.describe Account::CommentsController, type: :controller do
     end
   end
   describe 'DELETE destroy' do
+    render_views
     context 'when user has privilege' do
       let!(:comment) { create :comment }
       it 'should delete the comment' do
