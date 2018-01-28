@@ -3,6 +3,7 @@ class Account::CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
+    @comment.assign_attributes(tenant_id: current_tenant.id)
     if @comment.save
       respond_to_format
     else
@@ -12,7 +13,7 @@ class Account::CommentsController < ApplicationController
 
   def destroy
     @comment = resource
-    if current_user.privileged?
+    if current_user.privileged? && current_tenant_comment?
       @comment.destroy
       respond_to_format
     else
@@ -24,6 +25,10 @@ class Account::CommentsController < ApplicationController
 
   def respond_to_format(block = nil)
     respond_to { |format| format.js { block } }
+  end
+
+  def current_tenant_comment?
+    resource.tenant_id == current_tenant.id
   end
 
   def resource
