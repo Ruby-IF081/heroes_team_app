@@ -22,7 +22,12 @@ RSpec.describe Account::CompaniesController, type: :controller do
   end
 
   describe "GET #show" do
-    let!(:comment) { create :comment, commentable: company }
+    let!(:comment) do
+      create :comment, commentable: company,
+                       tenant_id: company.user.tenant.id,
+                       user_id:  company.user.id
+    end
+
     it "assigns the requested company to @company" do
       get :show, params: { id: company.id }
       expect(assigns(:company)).to eq(company)
@@ -55,7 +60,11 @@ RSpec.describe Account::CompaniesController, type: :controller do
         sign_in @admin
       end
       let!(:admin_company) { create :company, user_id: @admin.id }
-      let!(:admin_comment) { create :comment, commentable: admin_company, user_id: @admin.id }
+      let!(:admin_comment) do
+        create :comment, commentable: admin_company,
+                         user_id: @admin.id,
+                         tenant_id: @admin.tenant_id
+      end
       render_views
       it 'comment should contain delete link' do
         get :show, params: { id: admin_company.id }

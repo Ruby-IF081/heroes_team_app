@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20180120103004) do
     t.bigint "commentable_id"
     t.bigint "user_id"
     t.text "body"
-    t.integer "tenant_id"
+    t.bigint "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"

@@ -13,7 +13,7 @@ class Account::CommentsController < ApplicationController
 
   def destroy
     @comment = resource
-    if current_user.privileged? && current_tenant_comment?
+    if current_user.privileged?
       @comment.destroy
       respond_to_format
     else
@@ -27,12 +27,8 @@ class Account::CommentsController < ApplicationController
     respond_to { |format| format.js { block } }
   end
 
-  def current_tenant_comment?
-    resource.tenant_id == current_tenant.id
-  end
-
   def resource
-    Comment.find(params[:id])
+    current_tenant.comments.find(params[:id])
   end
 
   def comment_params
