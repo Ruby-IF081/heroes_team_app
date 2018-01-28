@@ -6,11 +6,11 @@
         button.close[aria-hidden="true" data-dismiss="modal" type="button" x ]
           span[aria-hidden="true"] &times;
 
-      = simple_form_for [:account, @company, @page], remote: true, method: :post, html: { class: 'form-horizontal' } do |f|
+      = simple_form_for [:account, @company, @page], remote: true, html: { class: 'form-horizontal' } do |f|
         .modal-body
           = f.input :title, label: 'Title', required: false, error: 'Title is mandatory, please specify one'
           = f.input :source_url, label: 'Source url', required: false, error: 'Source url is mandatory, please specify one'
 
         .modal-footer
           button.btn.btn-secondary[type="button" data-dismiss="modal"] Close
-          = f.button :submit, class: 'btn btn-primary', method: :post, data: { dismiss: :modal }
+          = f.button :submit, class: 'btn btn-primary'

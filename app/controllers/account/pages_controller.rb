@@ -29,14 +29,24 @@ class Account::PagesController < ApplicationController
   end
 
   def create
-    binding.pry
-    @page = Page.new(page_params)
+    @page = Page.new(page_params.merge(company_id: params[:company_id],
+                                       page_type: :manual,
+                                       status: Page::PENDING_STATUS))
+    @pages = parent.pages
+    if @page.save
+      flash[:success] = "Page successfully created"
+      respond_to do |wants|
+        wants.js { render 'create', status: :created }
+      end
+    else
+      flash[:error] = "Page not created"
+    end
   end
 
   private
 
   def page_params
-    params.require(:page).permit(:title, :source_url, :company_id)
+    params.require(:page).permit(:title, :source_url)
   end
 
   def parent
