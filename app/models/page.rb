@@ -41,6 +41,7 @@ class Page < ApplicationRecord
   PENDING_TITLE    = 'pending'.freeze
 
   belongs_to :company
+  has_many   :comments, as: :commentable, dependent: :destroy
 
   mount_uploader :screenshot, ScreenshotUploader
 

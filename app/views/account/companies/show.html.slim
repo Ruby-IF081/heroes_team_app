@@ -67,3 +67,7 @@
           .card-content
             .card-body
               = render 'account/companies/html/social_links', company: @company
+        .card
+          .card-header
+            h4.card-title= "#{@company.name} comments"
+          = render partial: 'account/comments/comments', locals: { object: @company }
