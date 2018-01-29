@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :tenants,            only: %i[show index]
     resource  :my_tenant,          only: %i[show edit update]
+    resource  :profile,            only: %i[show edit update], controller: 'profile'
     resources :analytics,          only: %i[index]
     resources :users do
       member do
