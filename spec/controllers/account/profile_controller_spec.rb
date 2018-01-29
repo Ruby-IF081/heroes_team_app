@@ -8,7 +8,7 @@ RSpec.describe Account::ProfileController, type: :controller do
 
   describe "GET #show" do
     it "renders the #show view" do
-      get :show, params: { id: @user.id }
+      get :show
       expect(response).to have_http_status(200)
       expect(response).to render_template(:show)
     end

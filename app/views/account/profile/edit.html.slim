@@ -17,15 +17,15 @@ h1.col-md-6.col-md-offset-3 Edit Profile
         .card-content
           .card-body
             .row
-              .card-image.col-sm-3
-                = link_to image_tag(@profile.avatar, alt: "Avatar"), '#'
+              .card-image.col-sm-2
+                = image_tag(@profile.avatar, alt: "Avatar")
               .card-text.col-sm-9
                 .row
                   .col-sm-5
                     = f.input :first_name
                   .col-sm-5
                     = f.input :last_name
-                = f.input :date_of_birth, as: :date, start_year: 100.years.ago.year, end_year: 18.years.ago.year, order: [:day, :month, :year]
+                = f.input :birthday, as: :date, start_year: 100.years.ago.year, end_year: 18.years.ago.year, order: [:day, :month, :year]
                 .row
                   .col-sm-6
                     = f.input :email, placeholder: 'user@domain.com'
@@ -40,7 +40,7 @@ h1.col-md-6.col-md-offset-3 Edit Profile
           .card-body
             .card-text
               = f.input :work
-              = f.input :skils, label: 'Professional skils'
+              = f.input :skills, label: 'Professional skills'
               = f.input :education
       /! / Work & Education
       /! About

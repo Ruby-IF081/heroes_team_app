@@ -23,23 +23,25 @@
             .card-body
               .row
                 .card-image.col-sm-2
-                  = image_tag(@profile.avatar, :size => 120)
-                .card-text.col-sm-8
+                  = image_tag(@profile.avatar)
+                .card-text.col-sm-9
                   .row
                     .card-text.col-sm-3
                       h6 User-email:
                     .card-text.col-sm-9
                       = @profile.email
-                  .row
-                    .card-text.col-sm-3
-                      h6 Phone number:
-                    .card-text.col-sm-9
-                      = @profile.phone
-                  .row
-                    .card-text.col-sm-3
-                      h6 Date of birth:
-                    .card-text.col-sm-9
-                      = @profile.date_of_birth
+                  - if @profile.phone?
+                    .row
+                      .card-text.col-sm-3
+                        h6 Phone number:
+                      .card-text.col-sm-9
+                        = @profile.phone
+                  - if @profile.birthday?
+                    .row
+                      .card-text.col-sm-3
+                        h6 Date of birth:
+                      .card-text.col-sm-9
+                        = l @profile.birthday, format: :long
                   .row
                     .card-text.col-sm-3
                       h6 Tenant:
@@ -57,7 +59,7 @@
         .card-content.collapse.show
           .card-body
             .card-text
-              = @profile.work
+              = simple_format(@profile.work)
     .card
       - if @profile.education?
         .card-header
@@ -65,15 +67,15 @@
         .card-content.collapse.show
           .card-body
             .card-text
-              = @profile.education
+              = simple_format(@profile.education)
     .card
-      - if @profile.skils?
+      - if @profile.skills?
         .card-header
-          h4.card-title Professional skils
+          h4.card-title Professional skills
         .card-content.collapse.show
           .card-body
             .card-text
-              = @profile.skils
+              = simple_format(@profile.skills)
     .card
       - if @profile.about?
         .card-header
@@ -81,4 +83,4 @@
         .card-content.collapse.show
           .card-body
             .card-text
-              = @profile.about
+              = simple_format(@profile.about)
