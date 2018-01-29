@@ -29,10 +29,9 @@ class Account::PagesController < ApplicationController
   end
 
   def create
-    @page = Page.new(page_params.merge(company_id: params[:company_id],
-                                       page_type: :manual,
-                                       status: Page::PENDING_STATUS))
-    @pages = parent.pages
+    @pages = collection
+    @page = @pages.build(page_params.merge(page_type: :manual, status: Page::PENDING_STATUS))
+
     if @page.save
       flash[:success] = "Page successfully created"
       respond_to do |wants|

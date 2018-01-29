@@ -1,9 +1,2 @@
-$("ul.errors").html("")
-<% if @page.errors.any? %>
-  <% @page.errors.full_messages.each do |message| %>
-    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
-  <% end %>
-<% else %>
-  $("#testing").html("<%= escape_javascript(render @pages) %>")
-  $("#new-page-dialog").modal("hide")
-<% end %>
+$("#content-body").html("<%= escape_javascript(render @pages) %>")
+$("#new-page-dialog").modal("hide")
