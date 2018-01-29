@@ -1,8 +1,11 @@
 FactoryBot.define do
   factory :comment, class: Comment do
     association :commentable, factory: :company
-    association :user, factory: :user
-    tenant_id { create(:user).tenant_id }
     body { Faker::Lorem.paragraphs(1).join }
+    after(:build) do |comment|
+      user = create(:user, :admin)
+      comment.user_id = user.id
+      comment.tenant_id = user.tenant_id
+    end
   end
 end

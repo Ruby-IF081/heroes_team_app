@@ -1,15 +1,17 @@
 require 'rails_helper'
 
 RSpec.describe Account::CommentsController, type: :controller do
+  let!(:comment) { create(:comment) }
   before :each do
-    @user = FactoryBot.create(:user, :admin)
+    @user = comment.user
     sign_in @user
   end
   describe 'POST create' do
     render_views
     context 'with valid attributes' do
-      let!(:val_comment) { build :comment, user_id: @user.id }
+      let!(:val_comment) { build(:comment, user_id: @user.id, tenant_id: @user.tenant_id) }
       it 'should create a new comment' do
+        # binding.pry
         expect do
           post :create, xhr: true, params: { comment:
                                            { commentable_type: val_comment.commentable_type,
@@ -21,7 +23,7 @@ RSpec.describe Account::CommentsController, type: :controller do
       end
     end
     context 'with invalid attributes' do
-      let!(:invalid_comment) { build :comment, tenant_id: @user.tenant_id }
+      let!(:invalid_comment) { build(:comment, user_id: @user.id, tenant_id: @user.tenant_id) }
       it 'should not create a new comment' do
         expect do
           post :create, xhr: true, params: { comment:
@@ -36,11 +38,10 @@ RSpec.describe Account::CommentsController, type: :controller do
   end
   describe 'DELETE destroy' do
     render_views
-    let!(:comment) do
-      create :comment, tenant_id: @user.tenant_id
-    end
     context 'when user has privilege' do
+      # let!(:comment) { build(:comment, user_id: @user.id, tenant_id: @user.tenant_id) }
       it 'should delete the comment' do
+        # binding.pry
         expect do
           delete :destroy, xhr: true, params: { id: comment.id }
         end.to change(Comment, :count).by(-1)
@@ -52,6 +53,7 @@ RSpec.describe Account::CommentsController, type: :controller do
         sign_out @user
         sign_in @sale
       end
+      let!(:other_tenant_comment) { create(:comment) }
       it 'should not delete the comment' do
         expect do
           delete :destroy, xhr: true, params: { id: comment.id }
