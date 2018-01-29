@@ -50,25 +50,25 @@ RSpec.describe Account::CompaniesController, type: :controller do
       render_views
       it 'comment should not contain delete link' do
         get :show, params: { id: company.id }
-        expect(response.body).not_to have_link(href: account_comment_path(comment))
+        expect(response.body).to have_link(href: account_comment_path(comment))
       end
     end
     context 'when user admin' do
       before :each do
-        @admin = FactoryBot.create(:user, :admin)
+        @sale = FactoryBot.create(:user, :sale)
         sign_out company.user
-        sign_in @admin
+        sign_in @sale
       end
-      let!(:admin_company) { create :company, user_id: @admin.id }
-      let!(:admin_comment) do
-        create :comment, commentable: admin_company,
-                         user_id: @admin.id,
-                         tenant_id: @admin.tenant_id
+      let!(:sale_company) { create :company, user_id: @sale.id }
+      let!(:sale_comment) do
+        create :comment, commentable: sale_company,
+                         user_id: @sale.id,
+                         tenant_id: @sale.tenant_id
       end
       render_views
       it 'comment should contain delete link' do
-        get :show, params: { id: admin_company.id }
-        expect(response.body).to have_link(href: account_comment_path(admin_comment))
+        get :show, params: { id: sale_company.id }
+        expect(response.body).not_to have_link(href: account_comment_path(sale_comment))
       end
     end
   end

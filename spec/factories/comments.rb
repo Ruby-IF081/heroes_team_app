@@ -3,7 +3,7 @@ FactoryBot.define do
     association :commentable, factory: :company
     body { Faker::Lorem.paragraphs(1).join }
     after(:build) do |comment|
-      user = create(:user, :admin)
+      user = comment.commentable.user
       comment.user_id = user.id
       comment.tenant_id = user.tenant_id
     end

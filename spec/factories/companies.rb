@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :company, class: Company do
-    user
+    association :user, factory: %i[user admin]
     name { Faker::Company.name }
     domain { Faker::Internet.domain_name }
 

@@ -11,7 +11,6 @@ RSpec.describe Account::CommentsController, type: :controller do
     context 'with valid attributes' do
       let!(:val_comment) { build(:comment, user_id: @user.id, tenant_id: @user.tenant_id) }
       it 'should create a new comment' do
-        # binding.pry
         expect do
           post :create, xhr: true, params: { comment:
                                            { commentable_type: val_comment.commentable_type,
@@ -39,9 +38,7 @@ RSpec.describe Account::CommentsController, type: :controller do
   describe 'DELETE destroy' do
     render_views
     context 'when user has privilege' do
-      # let!(:comment) { build(:comment, user_id: @user.id, tenant_id: @user.tenant_id) }
       it 'should delete the comment' do
-        # binding.pry
         expect do
           delete :destroy, xhr: true, params: { id: comment.id }
         end.to change(Comment, :count).by(-1)
