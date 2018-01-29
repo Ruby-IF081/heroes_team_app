@@ -24,10 +24,11 @@ Rails.application.routes.draw do
         resource :chrome_extensions, only: %i[new create]
       end
     end
-    resources :comments, only: %i[create destroy]
-    resources :tenants, only: %i[show index]
-    resource :my_tenant, only: %i[show edit update]
-    resources :analytics, only: %i[index]
+    resources :comments,           only: %i[create destroy]
+    resources :tenants,            only: %i[show index]
+    resource  :my_tenant,          only: %i[show edit update]
+    resource  :profile,            only: %i[show edit update], controller: 'profile'
+    resources :analytics,          only: %i[index]
     resources :users do
       member do
         post :impersonate
