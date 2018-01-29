@@ -33,12 +33,11 @@ class Account::PagesController < ApplicationController
     @page = @pages.build(page_params.merge(page_type: :manual, status: Page::PENDING_STATUS))
 
     if @page.save
-      flash[:success] = "Page successfully created"
       respond_to do |wants|
         wants.js { render 'create', status: :created }
       end
     else
-      flash[:error] = "Page not created"
+      render :new
     end
   end
 
