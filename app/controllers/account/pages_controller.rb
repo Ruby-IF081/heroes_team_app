@@ -33,9 +33,7 @@ class Account::PagesController < ApplicationController
     @page = @pages.build(page_params.merge(page_type: :manual, status: Page::PENDING_STATUS))
 
     if @page.save
-      respond_to do |wants|
-        wants.js { render 'create', status: :created }
-      end
+      render :create, status: :created
     else
       render :new
     end
