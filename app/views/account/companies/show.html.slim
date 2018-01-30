@@ -66,8 +66,20 @@
             h4.card-title= "#{@company.name} links"
           .card-content
             .card-body
-              = render 'account/companies/html/social_links', company: @company
+              - @company.socials.each do |social_link|
+                = render 'socials', company: @company, link: social_link
+        - if @videos.present?
+          .card
+            .card-header
+              h4.card-title= "#{@company.name} youtube videos"
+            .card-content
+              .card-body
+                = render 'account/companies/html/youtube_videos', videos: @videos
+            .card-content
+              .card-body
+                .card-text
+                  = link_to 'Show All Videos', account_company_videos_path(@company), class: 'btn btn-secondary btn-lg btn-block'
         .card
           .card-header
             h4.card-title= "#{@company.name} comments"
-          = render partial: 'account/comments/comments', locals: { object: @company }
+          = render partial: 'account/comments/comments', locals: {object: @company}

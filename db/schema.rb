@@ -122,6 +122,16 @@ ActiveRecord::Schema.define(version: 20180125155315) do
     t.index ["tenant_id"], name: "index_users_on_tenant_id"
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.string "title"
+    t.text "embed_code"
+    t.integer "videoable_id"
+    t.string "videoable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type"
+  end
+
   create_table "visits", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
