@@ -121,6 +121,10 @@ GEM
     coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 43f24fd... Implement comments for companies and pages. (#168)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -128,6 +132,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+<<<<<<< HEAD
+=======
+>>>>>>> 88b9f19... Export users to CSV format (#160)
+=======
+>>>>>>> 43f24fd... Implement comments for companies and pages. (#168)
     comma (4.1.0)
       activesupport (>= 4.0.0, < 5.2)
     concurrent-ruby (1.0.5)
@@ -501,7 +510,14 @@ DEPENDENCIES
   carrierwave
   chartkick
   codeclimate-test-reporter (~> 1.0.0)
+<<<<<<< HEAD
+<<<<<<< HEAD
   coffee-rails
+=======
+>>>>>>> 88b9f19... Export users to CSV format (#160)
+=======
+  coffee-rails
+>>>>>>> 43f24fd... Implement comments for companies and pages. (#168)
   comma (~> 4.1.0)
   database_cleaner
   devise

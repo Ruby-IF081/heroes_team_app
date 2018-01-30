@@ -19,6 +19,4 @@
 //= require chartkick
 //= require rating
 //= require comments_form
-//= require error_create_comment
-//= require error_create_contact
-//= require user_contacts
+//= require user_contacts    

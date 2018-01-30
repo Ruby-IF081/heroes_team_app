@@ -37,9 +37,15 @@ class Page < ApplicationRecord
                       CRUNCHBASE_TYPE,
                       CHROME_EXTENSION,
                       OFFICIAL_PAGE].freeze
+<<<<<<< HEAD
 
   LEGAL_RATING     = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
 
+=======
+
+  LEGAL_RATING     = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
+
+>>>>>>> 218025c... Domain processing worker (#118)
   PENDING_TITLE    = 'pending'.freeze
 
   belongs_to :company
