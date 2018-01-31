@@ -32,4 +32,30 @@ RSpec.describe Account::PagesController, sidekiq: true, type: :controller do
       expect(page.rating).to eq(old_rating)
     end
   end
+
+  context 'Page by ajax' do
+    render_views
+    before(:each) do
+      @user = FactoryBot.create(:user)
+      sign_in @user
+    end
+    let!(:company) { create :company, user_id: @user.id }
+    let!(:valid_page) { build :page, company: company }
+    it 'should create a new page' do
+      expect do
+        post :create, xhr: true, params: { company_id: company.id,
+                                           id: valid_page.id,
+                                           page: { title: 'google',
+                                                   source_url: 'google.com' } }
+      end.to change(Page, :count).by(1)
+    end
+    it 'should not create a new page' do
+      expect do
+        post :create, xhr: true, params: { company_id: company.id,
+                                           id: valid_page.id,
+                                           page: { title: 'google',
+                                                   source_url: '' } }
+      end.not_to change(Page, :count)
+    end
+  end
 end
