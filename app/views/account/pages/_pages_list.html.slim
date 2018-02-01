@@ -1,5 +1,5 @@
 table.table.pages-list
   tbody
     - pages.each do |page|
-      = render 'pages_list_each', {page: page}
+      = render 'pages_list_row', {page: page}
 = paginate pages

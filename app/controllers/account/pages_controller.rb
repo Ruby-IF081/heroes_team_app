@@ -32,18 +32,18 @@ class Account::PagesController < ApplicationController
     @pages = collection
     @page = @pages.build(page_params.merge(page_type: :manual, status: Page::PENDING_STATUS))
 
-    respond_to do |format|
-      format.js do
-        if @page.save
-          render(:create, status: :created)
-        else
-          render(:new)
-        end
-      end
+    if @page.save
+      respond_to_format { render :create, status: :created }
+    else
+      respond_to_format { render :new }
     end
   end
 
   private
+
+  def respond_to_format(&block)
+    respond_to { |format| format.js(&block) }
+  end
 
   def page_params
     params.require(:page).permit(:title, :source_url)

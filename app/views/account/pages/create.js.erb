@@ -1,2 +1,2 @@
-$(".table.pages-list").prepend("<%= escape_javascript(render 'pages_list_each', { page: @page }) %>");
+$(".table.pages-list").prepend("<%= escape_javascript(render 'pages_list_row', { page: @page }) %>");
 $("#new-page-dialog").modal("hide");
