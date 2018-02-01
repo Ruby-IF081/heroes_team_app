@@ -3,7 +3,7 @@
     .modal-content
       .modal-header
         h3#new-page-title.modal-title New page form
-        button.close[aria-hidden="true" data-dismiss="modal" type="button" x ]
+        button.close[aria-hidden="true" data-dismiss="modal" type="button"]
           span[aria-hidden="true"] &times;
 
       = simple_form_for [:account, company, page], remote: true do |f|
