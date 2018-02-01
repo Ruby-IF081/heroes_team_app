@@ -39,6 +39,12 @@ RSpec.describe Account::CompaniesController, type: :controller do
       expect(response).to render_template(:show)
     end
 
+    it "assigns twitter to a twitter processor" do
+      get :show, params: { id: company.id }
+
+      expect(assigns(:twitter)).to be_a(TwitterProcessor)
+    end
+
     context 'contains the comments' do
       render_views
       it 'should contain comment body' do
@@ -46,6 +52,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
         expect(response.body).to have_content(comment.body)
       end
     end
+
     context 'when user sale' do
       render_views
       it 'comment should not contain delete link' do
@@ -53,6 +60,7 @@ RSpec.describe Account::CompaniesController, type: :controller do
         expect(response.body).to have_link(href: account_comment_path(comment))
       end
     end
+
     context 'when user admin' do
       before :each do
         @sale = FactoryBot.create(:user, :sale)

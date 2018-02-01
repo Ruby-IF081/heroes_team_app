@@ -11,7 +11,9 @@
 // about supported directives.
 //
 //= require jquery3
+//= require jquery.matchHeight
 //= require popper
+//= require rails-timeago
 //= require bootstrap
 //= require ./stack_theme/core/app-menu
 //= require rails-ujs
@@ -19,3 +21,4 @@
 //= require chartkick
 //= require rating
 //= require comments_form
+//= require match_tweets_height

@@ -7,6 +7,7 @@ class Account::CompaniesController < ApplicationController
 
   def show
     @company = current_company
+    @twitter = TwitterProcessor.new(company: @company, number_of_tweets: 6)
     @videos = @company.videos.take(3)
   end
 
