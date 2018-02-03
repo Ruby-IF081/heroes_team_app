@@ -38,7 +38,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :tenant
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
@@ -89,5 +90,20 @@ class User < ApplicationRecord
     email
     role
     created_at { |created_at| created_at.strftime("%d %b %y %H:%M") }
+  end
+
+  def self.from_omniauth(auth)
+    User.where(provider: auth.provider, uid: auth.uid).first_or_create
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if (data = session['devise.facebook_data'])
+        user.assign_attributes(email: data['info']['email'], uid: data['uid'],
+                               provider: data['provider'],
+                               first_name: data['info']['name'].split(' ').first,
+                               last_name: data['info']['name'].split(' ').last)
+      end
+    end
   end
 end
