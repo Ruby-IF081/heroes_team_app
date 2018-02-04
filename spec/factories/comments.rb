@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id               :integer          not null, primary key
+#  commentable_type :string
+#  commentable_id   :integer
+#  user_id          :integer
+#  body             :text
+#  tenant_id        :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 FactoryBot.define do
   factory :comment, class: Comment do
     association :commentable, factory: :company

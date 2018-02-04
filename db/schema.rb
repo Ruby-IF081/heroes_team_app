@@ -75,6 +75,16 @@ ActiveRecord::Schema.define(version: 20180203131713) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "type"
+    t.string "content"
+    t.integer "notificable_id"
+    t.string "notificable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notificable_id", "notificable_type"], name: "index_notifications_on_notificable_id_and_notificable_type"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "page_type"
     t.string "title"

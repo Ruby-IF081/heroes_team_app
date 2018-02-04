@@ -21,6 +21,14 @@
 #  tenant_id              :integer
 #  auth_token             :string
 #  token_created_at       :datetime
+#  birthday               :date
+#  avatar                 :string
+#  phone                  :string
+#  skills                 :string
+#  social_links           :string
+#  education              :text
+#  work                   :text
+#  about                  :text
 #
 
 class User < ApplicationRecord
