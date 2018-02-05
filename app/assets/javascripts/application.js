@@ -15,7 +15,9 @@
 //= require popper
 //= require rails-timeago
 //= require bootstrap
+//= require ./stack_theme/core/vendors.min
 //= require ./stack_theme/core/app-menu
+//= require ./stack_theme/core/app
 //= require rails-ujs
 //= require Chart.bundle
 //= require chartkick
