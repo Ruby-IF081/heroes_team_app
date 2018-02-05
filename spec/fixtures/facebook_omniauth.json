@@ -3,7 +3,8 @@
   "uid": "1234567890",
   "info": {
     "email": "user@mail.com",
-    "name": "Vasya Pupkin",
+    "first_name": "Vasya",
+    "last_name": "Pupkin",
     "image": "Vasya Pupkin img"
   },
   "credentials": {
