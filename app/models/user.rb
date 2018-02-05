@@ -93,7 +93,7 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    User.where(provider: auth.provider, uid: auth.uid).first_or_create
+    User.find_or_create_by(provider: auth.provider, uid: auth.uid)
   end
 
   def self.new_with_session(params, session)

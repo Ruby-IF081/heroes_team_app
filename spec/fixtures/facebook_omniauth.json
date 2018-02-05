@@ -1,0 +1,21 @@
+{
+  "provider": "facebook",
+  "uid": "1234567890",
+  "info": {
+    "email": "user@mail.com",
+    "name": "Vasya Pupkin",
+    "image": "Vasya Pupkin img"
+  },
+  "credentials": {
+    "token": "abcdefg12345",
+    "expires_at": "28-02-2018",
+    "expires": true
+  },
+  "extra": {
+    "raw_info": {
+      "name": "Vasya Pupkin",
+      "email": "user@mail.com",
+      "id": "1234567890"
+    }
+  }
+}

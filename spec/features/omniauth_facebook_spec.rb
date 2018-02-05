@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'omniauth facebook' do
-  let!(:omniauth_hash) { FaceBookOmniauth.omniauth_info }
+  stub_omniauth_json = JSON.parse(File.read('spec/fixtures/facebook_omniauth.json'))
+  OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new(stub_omniauth_json)
+
   scenario 'fill the sing up form' do
-    omniauth_hash
     visit new_user_registration_path
     expect(page).to have_link('Sign up with facebook')
     click_link 'Sign up with facebook'
@@ -13,7 +14,7 @@ RSpec.feature 'omniauth facebook' do
   end
 
   scenario 'logs in an existing user' do
-    user = create(:user, uid: omniauth_hash.uid, provider: omniauth_hash.provider)
+    user = create(:user, uid: stub_omniauth_json['uid'], provider: stub_omniauth_json['provider'])
     visit new_user_session_path
     expect(page).to have_link('Facebook')
     click_link 'Facebook'

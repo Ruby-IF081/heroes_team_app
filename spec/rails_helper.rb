@@ -41,10 +41,9 @@ RSpec.configure do |config|
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
 
-  config.include FaceBookOmniauth
-
   config.before(:suite) do
     FactoryBot.reload
+    OmniAuth.config.test_mode = true
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
