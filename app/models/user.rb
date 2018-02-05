@@ -100,11 +100,10 @@ class User < ApplicationRecord
     super.tap do |user|
       if (data = session['devise.facebook_data'])
         info = data['info']
-        name = info['name'].split(' ')
         user.assign_attributes(email: info['email'], uid: data['uid'],
                                provider: data['provider'],
-                               first_name: name.first,
-                               last_name: name.last)
+                               first_name: info['first_name'],
+                               last_name: info['last_name'])
       end
     end
   end
