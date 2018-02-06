@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   get '/500', to: 'errors#internal_error'
 
   devise_for :users, path: 'account', controllers: {
-    registrations: 'users/registrations', sessions: 'users/track_sessions'
+    registrations: 'users/registrations', sessions: 'users/track_sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   resources :contacts, only: %i[new create]

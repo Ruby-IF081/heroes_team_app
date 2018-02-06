@@ -13,7 +13,19 @@
                   span
                     | You will access Tenant through your admin account
               .card-content
-                .card-body
+                .card-body.text-center
+                  .row
+                    .col-12.col-sm-6.col-md-6
+                      = link_to user_facebook_omniauth_authorize_path,
+                              class: 'popup btn btn-sm btn-social width-201 mb-1 btn-facebook'
+                        span.fa.fa-facebook
+                        | Sign up with facebook
+                    .col-12.col-sm-6.col-md-6
+                      = link_to '#',
+                              class: 'popup btn btn-sm btn-social width-201 mb-1 btn-google'
+                        span.fa.fa-google-plus
+                        | Sign up with google
+                .card-body.pt-0
                   = render 'devise/shared/registration_form'
                 p.text-center
                   | If you already have an Admin Account then&nbsp;

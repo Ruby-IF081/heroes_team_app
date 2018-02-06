@@ -43,6 +43,7 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     FactoryBot.reload
+    OmniAuth.config.test_mode = true
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.strategy = :transaction
   end
