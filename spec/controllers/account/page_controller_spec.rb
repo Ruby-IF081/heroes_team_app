@@ -61,12 +61,13 @@ RSpec.describe Account::PagesController, sidekiq: true, type: :controller do
 
   describe 'DELETE #destroy' do
     render_views
-    before(:each) do
-      @user = FactoryBot.create(:user, :admin)
-      sign_in @user
-    end
-    let!(:company) { create :company, user_id: @user.id }
+
+    let!(:user) { FactoryBot.create(:user, :admin) }
+    let!(:company) { create :company, user_id: user.id }
     let!(:page) { create :page, company: company }
+    before(:each) do
+      sign_in user
+    end
 
     context 'success' do
       subject { delete :destroy, xhr: true, params: { company_id: company.id, id: page.id } }
@@ -81,13 +82,14 @@ RSpec.describe Account::PagesController, sidekiq: true, type: :controller do
     end
 
     context 'error' do
-      before :each do
-        @sale = FactoryBot.create(:user, :sale, tenant_id: @user.tenant_id)
-        sign_out @user
-        sign_in @sale
-      end
-      let!(:sale_company) { create :company, user_id: @sale.id }
+      let!(:sale) { FactoryBot.create(:user, :sale, tenant_id: user.tenant_id) }
+      let!(:sale_company) { create :company, user_id: sale.id }
       let!(:sale_page) { create :page, company: sale_company }
+
+      before :each do
+        sign_out user
+        sign_in sale
+      end
 
       subject do
         delete :destroy, xhr: true, params: { company_id: sale_company.id,

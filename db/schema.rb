@@ -87,7 +87,9 @@ ActiveRecord::Schema.define(version: 20180203131713) do
     t.datetime "updated_at", null: false
     t.bigint "company_id"
     t.integer "rating", default: 0
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_pages_on_company_id"
+    t.index ["deleted_at"], name: "index_pages_on_deleted_at"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -132,8 +134,10 @@ ActiveRecord::Schema.define(version: 20180203131713) do
     t.string "uid"
     t.index ["auth_token", "token_created_at"], name: "index_users_on_auth_token_and_token_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["tenant_id"], name: "index_users_on_tenant_id"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   create_table "videos", force: :cascade do |t|
