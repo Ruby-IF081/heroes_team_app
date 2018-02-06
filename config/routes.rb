@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   namespace :account do
     root 'dashboard#index'
     resources :companies do
-      resources :pages, except: %i[edit update destroy] do
+      resources :pages, except: %i[edit update] do
         patch :rate, on: :member
       end
       resources :videos, only: %i[index]

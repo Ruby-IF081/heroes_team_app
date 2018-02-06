@@ -39,6 +39,16 @@ class Account::PagesController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user.privileged?
+      @page = resource
+      @page.destroy
+      respond_to_format
+    else
+      respond_to_format { render(js: "alert('No rights to delete this page');") }
+    end
+  end
+
   private
 
   def respond_to_format(&block)
