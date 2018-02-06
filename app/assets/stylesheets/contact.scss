@@ -1,0 +1,40 @@
+div.contacts {
+  width: 460px;
+  margin: 100px auto;
+  color: #2e405c;
+  font-size: 1.1rem;
+  background-color: #fbfbfb;
+  padding-bottom: 0;
+  span.help-block {
+    padding-left: 103px;
+    color: red;
+    font-weight: 300;
+  }
+  h4 {
+    padding: 0.5rem 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #E6E6E6;
+  }
+  label {
+    width: 20%;
+    float: left;
+  }
+  label::after {
+    content: "*";
+    color: red;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  input { 
+    width: 75%;
+    display: block;
+    margin-bottom: 20px;
+    &[type="submit"] {
+      width: 50%;
+      margin: 25px auto;
+    }
+  }
+  textarea {
+    width: 75%;
+  }
+} 

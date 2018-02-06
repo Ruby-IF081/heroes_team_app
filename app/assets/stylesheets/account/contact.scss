@@ -1,0 +1,50 @@
+#contact_header {
+  margin-bottom: 30px;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+form#contact_search {
+  display: flex; 
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+table#contacts_table {
+  background-color: #fff;
+  td {
+    width: 20%;
+  }
+  td:first-child {
+    width: 5%;
+  }
+  td.delete-icon {
+    text-align: center;
+  }
+  th:last-child {
+    text-align: center;
+  }
+  tr.clicked_row {
+    line-height: 12px;
+    cursor: pointer;
+  }
+  tr.contact_message {
+    display: none;
+    span {
+      font-weight: bold;
+    }
+  }
+  tr.show_message_row {
+    display: table-row;
+  }
+  a.delete_contact {
+    color: red;
+    font-size: 16px;
+    display: block;
+    cursor: default;
+  }
+  a.delete_contact:hover {
+    transform: scale(1.8, 1.8);
+  }
+}
