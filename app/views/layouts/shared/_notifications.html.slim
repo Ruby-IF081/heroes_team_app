@@ -1,21 +1,23 @@
 li.dropdown.dropdown-notification.nav-item
   a.nav-link.nav-link-label data-toggle="dropdown" href="#"
-    i.ficon.icon-bell
-    span.badge.badge-pill.badge-default.badge-danger.badge-default.badge-up 1
+    i.ficon.ft-bell
+    span#notifications-count.badge.badge-pill.badge-default.badge-danger.badge-default.badge-up
+      = "#{notifications_count}"
   ul.dropdown-menu.dropdown-menu-media.dropdown-menu-right
     li.dropdown-menu-header
       h6.dropdown-header.m-0
         span.grey.darken-2 Notifications
-        span.notification-tag.badge.badge-default.badge-danger.float-right.m-0 1 New
     li.scrollable-container.media-list
-      a href="javascript:void(0)"
-      .media
-        .media-left.align-self-center
-          i.ft-plus-square.icon-bg-circle.bg-cyan
-        .media-body
-          h6.media-heading You have new order!
-          p.notification-text.font-small-3.text-muted Lorem ipsum dolor sit amet, consectetuer elit.
-          small
-            time.media-meta.text-muted datetime="2015-06-11T18:29:20+08:00"  30 minutes ago
+      - notifications.each do |notification|
+        = link_to read_account_notification_path(notification.id),
+                class: "media",
+                id: "#{dom_id(notification)}",
+                remote: true do
+          .media-left.align-self-center
+            i class=(notification.status == 'error'? 'ft-alert-triangle icon-bg-circle bg-yellow bg-darken-3' : 'ft-check-circle icon-bg-circle bg-cyan')
+          .media-body
+            h6.media-heading class=(notification.status == 'error'? 'yellow darken-3' : '') = notification.content
+            small
+              time.media-meta.text-muted = "#{notification.created_at}"
     li.dropdown-menu-footer
-      a.dropdown-item.text-muted.text-center href="javascript:void(0)"  Read all notifications
+      a.dropdown-item.text-muted.text-center href="#"  View all notifications

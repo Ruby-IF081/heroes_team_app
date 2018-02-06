@@ -76,7 +76,8 @@ ActiveRecord::Schema.define(version: 20180203131713) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.string "type"
+    t.string "status"
+    t.boolean "readed", default: false
     t.string "content"
     t.integer "notificable_id"
     t.string "notificable_type"

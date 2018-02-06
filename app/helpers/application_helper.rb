@@ -19,6 +19,14 @@ module ApplicationHelper
     current_user != true_user
   end
 
+  def notifications_count
+    notifications.count
+  end
+
+  def notifications
+    Notification.unread
+  end
+
   def default_meta_tags
     site = Rails.application.secrets.site_title
     {

@@ -37,6 +37,7 @@ class Company < ApplicationRecord
   has_many   :pages, dependent: :destroy
   has_many   :comments, as: :commentable, dependent: :destroy
   has_many   :videos, as: :videoable, dependent: :destroy
+  has_many   :notifications, as: :notificable, dependent: :destroy
   has_and_belongs_to_many :industries, -> { distinct }
 
   mount_uploader :logo, CompanyLogoUploader

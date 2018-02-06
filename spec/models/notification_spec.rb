@@ -3,7 +3,8 @@
 # Table name: notifications
 #
 #  id               :integer          not null, primary key
-#  type             :string
+#  status           :string
+#  readed           :boolean          default(FALSE)
 #  content          :string
 #  notificable_id   :integer
 #  notificable_type :string

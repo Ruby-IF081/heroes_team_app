@@ -9,6 +9,8 @@ class NewPageWorker
     process
   rescue SocketError, OpenURI::HTTPError, Net::OpenTimeout, OpenSSL::SSL::SSLError
     page.update_attributes(status: Page::ERROR_STATUS)
+    page.notifications.create(status: Notification::ERROR_TYPE,
+                              content: "Page #{page.id} was crushed")
   end
 
   private
@@ -18,6 +20,8 @@ class NewPageWorker
     parse_html_content
     make_screenshot
     page.update_attributes(status: Page::PROCESSED_STATUS)
+    page.notifications.create(status: Notification::SUCCESSFUL_TYPE,
+                              content: "Page #{page.id} was successful processed")
   end
 
   def download_screenshot(file)
