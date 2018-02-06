@@ -44,10 +44,9 @@ class Account::PagesController < ApplicationController
 
     if current_user.privileged?
       @page.destroy
-      flash[:success] = "Page deleted"
       respond_to_format
     else
-      respond_to_format(render(js: "alert('No rights to delete this page');"))
+      respond_to_format { render(js: "alert('No rights to delete this page');") }
     end
   end
 
