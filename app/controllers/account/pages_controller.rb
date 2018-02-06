@@ -40,9 +40,8 @@ class Account::PagesController < ApplicationController
   end
 
   def destroy
-    @page = resource
-
     if current_user.privileged?
+      @page = resource
       @page.destroy
       respond_to_format
     else

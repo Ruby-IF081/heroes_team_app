@@ -87,7 +87,6 @@ RSpec.describe Account::PagesController, sidekiq: true, type: :controller do
       let!(:sale_page) { create :page, company: sale_company }
 
       before :each do
-        sign_out user
         sign_in sale
       end
 
