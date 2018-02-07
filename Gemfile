@@ -41,6 +41,7 @@ gem 'slim'
 gem 'twitter'
 gem 'uglifier', '>= 1.3.0'
 gem 'validates_email_format_of'
+gem 'whenever', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'yt'
@@ -90,6 +91,7 @@ end
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'simplecov', require: false
+  gem 'whenever-test'
 end
 
 gem 'tzinfo-data', '~> 1.2017', '>= 1.2017.3'
