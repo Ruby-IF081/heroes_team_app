@@ -36,6 +36,9 @@ Rails.application.routes.draw do
       member do
         get 'read', to: 'notifications#read', as: :read
       end
+      collection do
+        get 'read_all', to: 'notifications#read_all', as: :read_all
+      end
     end
     resource :profile, only: %i[show edit update], controller: 'profile' do
       resource :tokens, only: %i[create destroy]

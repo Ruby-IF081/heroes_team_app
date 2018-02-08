@@ -8,6 +8,11 @@ class Account::NotificationsController < ApplicationController
     render 'account/notifications/read'
   end
 
+  def read_all
+    collection.where(readed: false).update_all(readed: true)
+    render 'account/notifications/read_all'
+  end
+
   private
 
   def collection

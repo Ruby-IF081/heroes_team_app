@@ -24,13 +24,13 @@ class NotificationBuilder
   end
 
   def success(content)
-    @status = Notification::SUCCESS_TYPE
+    @status = Notification::SUCCESS_STATUS
     @notification_content = content
     self
   end
 
   def error(content)
-    @status = Notification::ERROR_TYPE
+    @status = Notification::ERROR_STATUS
     @notification_content = content
     self
   end

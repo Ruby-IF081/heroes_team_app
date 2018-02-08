@@ -7,7 +7,9 @@ li.dropdown.dropdown-notification.nav-item
     li.dropdown-menu-header
       h6.dropdown-header.m-0
         span.grey.darken-2 Notifications
-    li.scrollable-container.media-list
+    li.scrollable-container.media-list.without-notifications class=(notifications.empty? ? '' : 'hidden')
+      .dropdown-item.text-muted.text-center Nothing to show
+    li.scrollable-container.media-list.with-notifications class=(notifications.empty? ? 'hidden' : '')
       - notifications.each do |notification|
         = link_to read_account_notification_path(notification.id),
                 class: "media",
@@ -21,4 +23,5 @@ li.dropdown.dropdown-notification.nav-item
               time.media-meta.text-muted
                 = timeago_tag notification.created_at
     li.dropdown-menu-footer
-      a.dropdown-item.text-muted.text-center href="#"  View all notifications
+      = link_to 'Read all notifications', read_all_account_notifications_path, class: "dropdown-item text-muted text-center", remote: true
+        / a.dropdown-item.text-muted.text-center href="#"  Read all notifications
