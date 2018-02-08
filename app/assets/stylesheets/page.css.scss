@@ -40,5 +40,12 @@
   width: 15%;
 }
 .t-rating {
+  min-width: 100px;
   width: 10%;
+}
+.spinner {
+  display: block;
+  margin-left: auto; 
+  margin-right: auto;
+  height: 40px;
 }

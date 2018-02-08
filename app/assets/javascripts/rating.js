@@ -1,3 +1,3 @@
-function changeRating(rating) {
-    document.getElementById('pageRating').value = rating;
+function changeRating(element, rating) {
+    element.parentNode.previousSibling.value = rating;
 }

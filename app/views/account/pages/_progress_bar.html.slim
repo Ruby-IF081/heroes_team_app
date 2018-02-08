@@ -1,0 +1,7 @@
+- if page.rating_progress <= 50
+  - style = 'danger'
+- else
+  - style = 'success'
+.progress
+  .progress-bar.progress-bar-striped.progress-bar-animated class='bg-#{style}' aria-valuemax="#{page.rating_progress}" aria-valuemin="#{page.rating_progress}" aria-valuenow="#{page.rating_progress}" role="progress-bar-animatedr" style="width:#{page.rating_progress}%"
+    = page.rating_progress

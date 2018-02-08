@@ -86,6 +86,15 @@ class Page < ApplicationRecord
     update(rating: new_rating.to_i + rating) if LEGAL_RATING.include?(new_rating)
   end
 
+  def rating_progress
+    return 0 unless rating.positive?
+    rating * 100 / max_rating
+  end
+
+  def max_rating
+    company.pages.maximum(:rating)
+  end
+
   private
 
   def start_worker
