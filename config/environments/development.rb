@@ -36,11 +36,9 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.mailgun_settings = {
-    api_key: 'key-39a24cc4f80f5c062dc55be9dcbd3a7c',
-    domain:  'salesassistant.pp.ua'
-  }
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = { address: "localhost", port: 1025 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
