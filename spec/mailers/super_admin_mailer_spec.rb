@@ -9,7 +9,7 @@ RSpec.describe SuperAdminMailer, type: :mailer do
       it 'renders the headers' do
         expect(mail.subject).to eq('Users created on the previous day')
         expect(mail.to).to eq([user.email])
-        expect(mail.from).to eq(['salesassistant@mail.com'])
+        expect(mail.from).to eq(['heroesteamapp@gmail.com'])
       end
 
       it 'renders the body' do
