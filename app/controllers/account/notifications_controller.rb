@@ -11,7 +11,7 @@ class Account::NotificationsController < ApplicationController
   private
 
   def collection
-    Notification.all
+    current_user.notifications.all
   end
 
   def resource

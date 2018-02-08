@@ -29,6 +29,8 @@
 #  education              :text
 #  work                   :text
 #  about                  :text
+#  provider               :string
+#  uid                    :string
 #
 
 require 'rails_helper'

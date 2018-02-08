@@ -24,7 +24,7 @@ module ApplicationHelper
   end
 
   def notifications
-    Notification.unread
+    current_user.notifications.unread
   end
 
   def default_meta_tags
