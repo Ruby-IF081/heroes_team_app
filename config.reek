@@ -26,6 +26,9 @@
 "app/mailers":
   InstanceVariableAssumption:
     enabled: false
+"spec/mailers/previews":
+  UtilityFunction:
+    enabled: false
 IrresponsibleModule:
   enabled: false
 exclude_paths:
@@ -35,4 +38,7 @@ exclude_paths:
 UtilityFunction:
   public_methods_only: true
 TooManyConstants:
-  max_constants: 14
+  max_constants: 16
+UncommunicativeVariableName:
+  accept:
+    - !ruby/regexp /q/

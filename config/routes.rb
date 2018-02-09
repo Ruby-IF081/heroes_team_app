@@ -9,13 +9,16 @@ Rails.application.routes.draw do
   get '/500', to: 'errors#internal_error'
 
   devise_for :users, path: 'account', controllers: {
-    registrations: 'users/registrations', sessions: 'users/track_sessions'
+    registrations: 'users/registrations', sessions: 'users/track_sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
+  resources :contacts, only: %i[new create]
 
   namespace :account do
     root 'dashboard#index'
     resources :companies do
-      resources :pages, except: %i[edit update destroy] do
+      resources :pages, except: %i[edit update] do
         patch :rate, on: :member
       end
       resources :videos, only: %i[index]
@@ -28,6 +31,7 @@ Rails.application.routes.draw do
     resources :tenants,            only: %i[show index]
     resource  :my_tenant,          only: %i[show edit update]
     resources :analytics,          only: %i[index]
+    resources :contacts,           only: %i[index destroy]
     resource  :profile,            only: %i[show edit update], controller: 'profile' do
       resource :tokens, only: %i[create destroy]
     end

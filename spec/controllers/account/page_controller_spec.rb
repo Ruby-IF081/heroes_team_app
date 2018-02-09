@@ -58,4 +58,51 @@ RSpec.describe Account::PagesController, sidekiq: true, type: :controller do
       end.not_to change(Page, :count)
     end
   end
+
+  describe 'DELETE #destroy' do
+    render_views
+
+    let!(:user) { FactoryBot.create(:user, :admin) }
+    let!(:company) { create :company, user_id: user.id }
+    let!(:page) { create :page, company: company }
+    before(:each) do
+      sign_in user
+    end
+
+    context 'success' do
+      subject { delete :destroy, xhr: true, params: { company_id: company.id, id: page.id } }
+
+      it 'renders template' do
+        expect(subject).to render_template(:destroy)
+      end
+
+      it 'deletes something' do
+        expect { subject }.to change(Page, :count).by(-1)
+      end
+    end
+
+    context 'error' do
+      let!(:sale) { FactoryBot.create(:user, :sale, tenant_id: user.tenant_id) }
+      let!(:sale_company) { create :company, user_id: sale.id }
+      let!(:sale_page) { create :page, company: sale_company }
+
+      before :each do
+        sign_in sale
+      end
+
+      subject do
+        delete :destroy, xhr: true, params: { company_id: sale_company.id,
+                                              id: sale_page.id }
+      end
+
+      it 'does not delete record' do
+        expect { subject }.to change(Page, :count).by(0)
+      end
+
+      it 'responds with JS alert' do
+        subject
+        expect(response.body).to include("alert('No rights to delete this page')")
+      end
+    end
+  end
 end

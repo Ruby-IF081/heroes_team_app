@@ -1,0 +1,25 @@
+.card
+  .card-header
+    h4.card-title Recent Pages
+    a.heading-elements-toggle
+      i.fa.fa-ellipsis-v.font-medium-3
+    .heading-elements
+      ul.list-inline.mb-0
+        li
+          a[data-action="reload"]
+            i.ft-rotate-cw
+        li
+          a[data-action="expand"]
+            i.ft-maximize
+  .card-content
+    .table-responsive
+      table.table.table-hover.mb-0.ps-container.ps-theme-default
+        thead
+          tr
+            th URL
+            th Added
+        tbody
+          - recent_pages.each do |page|
+            tr
+              td.text-truncate = link_to urlify(page.source_url), page.source_url
+              td.text-truncate = l page.created_at, format: :long

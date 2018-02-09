@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'any_login'
 gem 'brakeman', '~> 4.1', '>= 4.1.1'
 gem 'carrierwave'
 gem 'chartkick'
@@ -19,8 +20,11 @@ gem 'groupdate'
 gem 'httparty'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
+gem 'mailgun-ruby', '~>1.1.6'
 gem 'meta-tags'
 gem 'mini_magick'
+gem 'omniauth'
+gem 'omniauth-facebook'
 gem 'pg', '~> 0.18'
 gem 'pretender'
 gem 'puma', '~> 3.7'
@@ -38,6 +42,7 @@ gem 'slim'
 gem 'twitter'
 gem 'uglifier', '>= 1.3.0'
 gem 'validates_email_format_of'
+gem 'whenever', require: false
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'yt'
@@ -55,7 +60,6 @@ gem 'sprockets-rails', require: 'sprockets/railtie'
 
 group :development, :test do
   gem 'annotate'
-  gem 'any_login'
   gem 'byebug', '~> 9.0', '>= 9.0.6'
   gem 'capybara', '~> 2.13'
   gem 'database_cleaner'
@@ -88,6 +92,7 @@ end
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'simplecov', require: false
+  gem 'whenever-test'
 end
 
 gem 'tzinfo-data', '~> 1.2017', '>= 1.2017.3'

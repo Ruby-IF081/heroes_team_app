@@ -30,13 +30,17 @@ class Page < ApplicationRecord
   LINKEDIN_TYPE    = 'linkedin'.freeze
   CRUNCHBASE_TYPE  = 'crunchbase'.freeze
   CHROME_EXTENSION = 'chrome_extension'.freeze
+  BY_AJAX          = 'by_ajax'.freeze
   OFFICIAL_PAGE    = 'official_page'.freeze
   PAGE_TYPES       = [BING_TYPE,
                       ANGLECO_TYPE,
                       LINKEDIN_TYPE,
                       CRUNCHBASE_TYPE,
+                      BY_AJAX,
                       CHROME_EXTENSION,
                       OFFICIAL_PAGE].freeze
+
+  MANUALLY_ADDED_PAGES_TYPES = [CHROME_EXTENSION, BY_AJAX].freeze
 
   LEGAL_RATING     = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
 
@@ -45,6 +49,8 @@ class Page < ApplicationRecord
   belongs_to :company
   delegate :tenant, to: :company, allow_nil: true
   has_many :comments, as: :commentable, dependent: :destroy
+
+  scope :recent, -> { order(created_at: :desc) }
 
   mount_uploader :screenshot, ScreenshotUploader
 

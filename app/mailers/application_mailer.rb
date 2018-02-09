@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'salesassistant@mail.com'
+  default from: Rails.application.secrets.default_email_address
   layout 'mailer'
 end

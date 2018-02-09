@@ -29,12 +29,22 @@ class Account::PagesController < ApplicationController
 
   def create
     @pages = collection
-    @page = @pages.build(page_params.merge(page_type: :manual, status: Page::PENDING_STATUS))
+    @page = @pages.build(page_params.merge(page_type: Page::BY_AJAX, status: Page::PENDING_STATUS))
 
     if @page.save
       respond_to_format { render :create, status: :created }
     else
       respond_to_format { render :new }
+    end
+  end
+
+  def destroy
+    if current_user.privileged?
+      @page = resource
+      @page.destroy
+      respond_to_format
+    else
+      respond_to_format { render(js: "alert('No rights to delete this page');") }
     end
   end
 

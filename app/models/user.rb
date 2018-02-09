@@ -37,8 +37,11 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :tenant
 
+  delegate :name, to: :tenant, prefix: true
+
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: %i[facebook]
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
@@ -49,6 +52,8 @@ class User < ApplicationRecord
                     email_format: { message: 'has invalid format' }
 
   scope :by_date, -> { order(created_at: :asc) }
+  scope :super_admins, -> { where(role: User::SUPER_ADMIN_ROLE) }
+  scope :created_yesterday, -> { where('created_at >= ?', 1.day.ago) }
 
   delegate :name, to: :tenant, prefix: true, allow_nil: true
 
@@ -89,5 +94,21 @@ class User < ApplicationRecord
     email
     role
     created_at { |created_at| created_at.strftime("%d %b %y %H:%M") }
+  end
+
+  def self.from_omniauth(auth)
+    User.find_or_create_by(provider: auth.provider, uid: auth.uid)
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if (data = session['devise.facebook_data'])
+        info = data['info']
+        user.assign_attributes(email: info['email'], uid: data['uid'],
+                               provider: data['provider'],
+                               first_name: info['first_name'],
+                               last_name: info['last_name'])
+      end
+    end
   end
 end
