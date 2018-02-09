@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180125155315) do
+ActiveRecord::Schema.define(version: 20180203131713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(version: 20180125155315) do
     t.index ["company_id", "industry_id"], name: "index_companies_industries_on_company_id_and_industry_id"
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_contacts_on_email"
+    t.index ["name"], name: "index_contacts_on_name"
+    t.index ["phone"], name: "index_contacts_on_phone"
+  end
+
   create_table "industries", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -75,7 +87,9 @@ ActiveRecord::Schema.define(version: 20180125155315) do
     t.datetime "updated_at", null: false
     t.bigint "company_id"
     t.integer "rating", default: 0
+    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_pages_on_company_id"
+    t.index ["deleted_at"], name: "index_pages_on_deleted_at"
   end
 
   create_table "tenants", force: :cascade do |t|
@@ -116,10 +130,14 @@ ActiveRecord::Schema.define(version: 20180125155315) do
     t.text "education"
     t.text "work"
     t.text "about"
+    t.string "provider"
+    t.string "uid"
     t.index ["auth_token", "token_created_at"], name: "index_users_on_auth_token_and_token_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["tenant_id"], name: "index_users_on_tenant_id"
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   create_table "videos", force: :cascade do |t|
