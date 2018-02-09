@@ -41,7 +41,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[facebook]
+         :omniauthable, omniauth_providers: %i[facebook google_oauth2]
 
   validates :first_name, presence: true
   validates :last_name,  presence: true
@@ -102,7 +102,7 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if (data = session['devise.facebook_data'])
+      if (data = session['devise.facebook_data'] || session['devise.google_data'])
         info = data['info']
         user.assign_attributes(email: info['email'], uid: data['uid'],
                                provider: data['provider'],

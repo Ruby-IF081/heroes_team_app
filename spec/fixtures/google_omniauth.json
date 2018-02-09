@@ -1,0 +1,9 @@
+{
+  "provider": "google_oauth2",
+  "uid": "1234567890",
+  "info": {
+    "email": "user@mail.com",
+    "first_name": "Vasya",
+    "last_name": "Pupkin"
+  }
+}
