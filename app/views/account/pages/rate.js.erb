@@ -5,5 +5,5 @@ setTimeout(function(){
 	$('.spinner').remove();
 	$('#edit_page_'+'<%= @page.id %> .btn-group').show();
 	$('#'+'<%= @page.id %>').html("<%=j render 'rating', { page: @page } %>");
-	$('.progress').parent().closest('div').html("<%=j render 'progress_bar', { page: @page } %>"); 
+	$('.progress').parent().closest('div').html("<%=j render 'progress_bar', { page: @page } %>");
 }, 400);
