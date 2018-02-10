@@ -23,10 +23,10 @@
               .row
                 .card-text.col-sm-2
                   h5 = "Page rating:"
-                .card-text.col-sm-3
+                .card-text.col-sm-3 id="#{dom_id(@page, :rating)}"
                   = render 'rating', page: @page
               .row
-                .card-text.col-sm-6
+                .card-text.col-sm-6 id="#{dom_id(@page, :progress)}"
                   = render 'progress_bar', page: @page
               .row
                 .card-text.col-sm-6

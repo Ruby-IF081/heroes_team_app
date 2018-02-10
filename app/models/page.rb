@@ -101,6 +101,10 @@ class Page < ApplicationRecord
     company.pages.maximum(:rating)
   end
 
+  def good_progress?
+    rating_progress >= 50
+  end
+
   private
 
   def start_worker

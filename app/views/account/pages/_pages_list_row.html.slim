@@ -3,7 +3,7 @@
           h3 = link_to page.title, controller: 'account/pages', action: 'show', id: page.id
           = link_to page.source_url, page.source_url
         td = page.status
-        td = render 'rating', page: page
+        td[id="#{dom_id(page, :rating)}"] = render 'rating', page: page
         td.t-rate = render 'rate_form', page: page
         td
           .btn-icon.btn.btn-white.btn-round
