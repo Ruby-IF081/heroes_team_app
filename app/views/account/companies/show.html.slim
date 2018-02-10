@@ -9,7 +9,6 @@
         .breadcrumb-wrapper.col-12
           = render_breadcrumbs({ 'Dashboard' => account_root_path,
                                  'Companies' => account_companies_path,
-                                 'Company pages' => account_company_pages_path(@company),
                                  @company.name => nil})
     .content-header-right.text-md-right.col-md-6.col-12
       .form-group
@@ -61,6 +60,11 @@
                   ul
                     - @company.industries.order('name ASC').each do |item|
                       li= item.name
+              .row
+                .col-12
+                  = link_to 'See company pages',
+                          account_company_pages_path(@company),
+                          class: 'btn btn-secondary btn-lg btn-block'
         .card
           .card-header
             h4.card-title= "#{@company.name} links"
