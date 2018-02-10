@@ -21,7 +21,7 @@ class Notification < ApplicationRecord
   belongs_to :user
   belongs_to :notificable, polymorphic: true
 
-  scope :unread, -> { where(readed: false) }
+  scope :unread, -> { where(readed: false).order(created_at: :desc) }
 
   validates :status,  presence: true
   validates :content, presence: true

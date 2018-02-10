@@ -22,6 +22,6 @@ li.dropdown.dropdown-notification.nav-item
             small
               time.media-meta.text-muted
                 = timeago_tag notification.created_at
-    li.dropdown-menu-footer
+    li.dropdown-menu-footer class=(notifications.empty? ? 'hidden' : '')
       = link_to 'Read all notifications', read_all_account_notifications_path, class: "dropdown-item text-muted text-center", remote: true
         / a.dropdown-item.text-muted.text-center href="#"  Read all notifications

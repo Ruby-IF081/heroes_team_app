@@ -43,7 +43,7 @@ class User < ApplicationRecord
   has_many :comments,      dependent: :destroy
   has_many :companies,     dependent: :destroy
   has_many :visits,        dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, dependent: :delete_all
   belongs_to :tenant, optional: true
 
   accepts_nested_attributes_for :tenant

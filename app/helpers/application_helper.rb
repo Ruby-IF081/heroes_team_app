@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def notifications
-    current_user.notifications.unread.order('created_at DESC')
+    current_user.notifications.unread
   end
 
   def default_meta_tags

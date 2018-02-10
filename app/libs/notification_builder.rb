@@ -19,15 +19,15 @@ class NotificationBuilder
     end
   end
 
-  def success(content)
+  def success(message)
     @status = Notification::SUCCESS_STATUS
-    @notification_content = content
+    @notification_content = message
     self
   end
 
-  def error(content)
+  def error(message)
     @status = Notification::ERROR_STATUS
-    @notification_content = content
+    @notification_content = message
     self
   end
 end

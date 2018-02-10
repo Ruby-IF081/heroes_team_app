@@ -80,12 +80,11 @@ ActiveRecord::Schema.define(version: 20180203214857) do
     t.boolean "readed", default: false
     t.string "content"
     t.integer "user_id"
-    t.integer "notificable_id"
+    t.bigint "notificable_id"
     t.string "notificable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["notificable_id"], name: "index_notifications_on_notificable_id"
-    t.index ["notificable_type"], name: "index_notifications_on_notificable_type"
+    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
