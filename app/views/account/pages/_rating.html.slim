@@ -1,2 +1,1 @@
-- style = page.good_progress? ? :success : :danger
-h5.t-rating class=style = "#{page.rating} / #{page.max_rating}"
+h5.rating class="#{page_rating_class(page)}" = "#{page.rating} / #{page.max_rating}"

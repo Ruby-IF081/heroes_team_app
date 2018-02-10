@@ -42,9 +42,11 @@ class Page < ApplicationRecord
 
   MANUALLY_ADDED_PAGES_TYPES = [CHROME_EXTENSION, BY_AJAX].freeze
 
-  LEGAL_RATING     = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
+  LEGAL_RATING      = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
 
-  PENDING_TITLE    = 'pending'.freeze
+  PENDING_TITLE     = 'pending'.freeze
+
+  POSITIVE_PROGRESS = 50.freeze
 
   belongs_to :company
   delegate :tenant, to: :company, allow_nil: true
@@ -102,7 +104,7 @@ class Page < ApplicationRecord
   end
 
   def good_progress?
-    rating_progress >= 50
+    rating_progress >= POSITIVE_PROGRESS
   end
 
   private

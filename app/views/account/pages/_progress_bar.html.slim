@@ -1,4 +1,3 @@
-- style = page.good_progress? ? :success : :danger
 .progress
-  .progress-bar.progress-bar-striped.progress-bar-animated class='bg-#{style}' aria-valuemax="#{page.rating_progress}" aria-valuemin="#{page.rating_progress}" aria-valuenow="#{page.rating_progress}" role="progress-bar-animatedr" style="width:#{page.rating_progress}%"
+  .progress-bar.progress-bar-striped.progress-bar-animated class="bg-#{page_rating_class(page)}" role="progress-bar-animatedr" style="width:#{page.rating_progress}%"
     = page.rating_progress

@@ -3,6 +3,6 @@ $('#<%= dom_id(@page, :edit) %>').append('<div id="loading"></div>');
 setTimeout(function(){
   $('#loading').fadeOut(300).remove();
   $('#<%= dom_id(@page, :rate) %>').fadeIn(300);
-  $('#<%= dom_id(@page, :rating) %>').html("<%=j render 'rating', { page: @page } %>");
-  $('#<%= dom_id(@page, :progress) %>').html("<%=j render 'progress_bar', { page: @page } %>");
+  $('#<%= dom_id(@page, :rating) %>').html("<%= j render 'rating', { page: @page } %>");
+  $('#<%= dom_id(@page, :progress) %>').html("<%= j render 'progress_bar', { page: @page } %>");
 }, 400);
