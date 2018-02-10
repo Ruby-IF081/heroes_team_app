@@ -22,9 +22,8 @@ RSpec.describe Notification, type: :notification do
     it { FactoryBot.build(:notification).should be_valid }
   end
 
-  it 'notification should be readed' do
+  it '.mark_as_readed' do
     notification.mark_as_readed
-
     expect(notification.readed).to eq(true)
   end
 end

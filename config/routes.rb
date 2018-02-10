@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resource  :my_tenant,     only: %i[show edit update]
     resources :analytics,     only: %i[index]
     resources :contacts,      only: %i[index destroy]
-    resources :notifications, only: %i[index] do
+    resources :notifications, only: [] do
       member do
         get 'read', to: 'notifications#read', as: :read
       end

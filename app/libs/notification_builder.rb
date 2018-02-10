@@ -1,25 +1,21 @@
 class NotificationBuilder
   attr_reader :content, :status, :notification_content, :user
 
-  def initialize(content: nil, user: nil)
-    raise ArgumentError('specify content') unless content
+  def initialize(content: nil)
+    raise NotImplementedError, 'Specify content' unless content
     @content = content
-    find_user(user)
+    find_user
   end
 
   def create
     user.notifications.create(notificable: content, status: status, content: notification_content)
   end
 
-  def find_user(user)
+  def find_user
     if content.is_a?(Company)
       @user = content.user
     elsif content.is_a?(Page)
       @user = content.company.user
-    elsif user.present?
-      @user = user
-    else
-      raise ArgumentError('Specify user')
     end
   end
 

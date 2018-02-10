@@ -19,12 +19,8 @@ module ApplicationHelper
     current_user != true_user
   end
 
-  def notifications_count
-    notifications.count
-  end
-
   def notifications
-    current_user.notifications.unread
+    current_user.notifications.unread.order('created_at DESC')
   end
 
   def default_meta_tags
