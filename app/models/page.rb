@@ -46,7 +46,7 @@ class Page < ApplicationRecord
 
   PENDING_TITLE     = 'pending'.freeze
 
-  POSITIVE_PROGRESS = 50.freeze
+  POSITIVE_PROGRESS = 50
 
   belongs_to :company
   delegate :tenant, to: :company, allow_nil: true

@@ -6,6 +6,7 @@ module PagesHelper
                    Page::ERROR_STATUS.to_s => 'badge-danger' }
     attr_class[status]
   end
+
   def page_rating_class(page)
     page.good_progress? ? :success : :danger
   end
