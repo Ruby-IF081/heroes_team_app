@@ -30,6 +30,7 @@ RSpec.describe Account::PagesController, sidekiq: true, type: :controller do
                                         id: page, page: { rating: invalid_rating } }
       page.reload
       expect(page.rating).to eq(old_rating)
+      expect(response.body).to include("alert('Invalid values for rating!')")
     end
   end
 
