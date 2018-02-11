@@ -21,6 +21,16 @@
 #  tenant_id              :integer
 #  auth_token             :string
 #  token_created_at       :datetime
+#  birthday               :date
+#  avatar                 :string
+#  phone                  :string
+#  skills                 :string
+#  social_links           :string
+#  education              :text
+#  work                   :text
+#  about                  :text
+#  provider               :string
+#  uid                    :string
 #
 
 class User < ApplicationRecord
@@ -30,9 +40,10 @@ class User < ApplicationRecord
   ROLES            = [SALE_ROLE, ADMIN_ROLE, SUPER_ADMIN_ROLE].freeze
   DEFAULT_PASSWORD = 'password'.freeze
 
-  has_many :comments, dependent: :destroy
-  has_many :companies, dependent: :destroy
-  has_many :visits, dependent: :destroy
+  has_many :comments,      dependent: :destroy
+  has_many :companies,     dependent: :destroy
+  has_many :visits,        dependent: :destroy
+  has_many :notifications, dependent: :delete_all
   belongs_to :tenant, optional: true
 
   accepts_nested_attributes_for :tenant

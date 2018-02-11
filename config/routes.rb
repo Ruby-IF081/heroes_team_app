@@ -28,12 +28,20 @@ Rails.application.routes.draw do
         resource :chrome_extensions, only: %i[new create]
       end
     end
-    resources :comments,           only: %i[create destroy]
-    resources :tenants,            only: %i[show index]
-    resource  :my_tenant,          only: %i[show edit update]
-    resources :analytics,          only: %i[index]
-    resources :contacts,           only: %i[index destroy]
-    resource  :profile,            only: %i[show edit update], controller: 'profile' do
+    resources :comments,      only: %i[create destroy]
+    resources :tenants,       only: %i[show index]
+    resource  :my_tenant,     only: %i[show edit update]
+    resources :analytics,     only: %i[index]
+    resources :contacts,      only: %i[index destroy]
+    resources :notifications, only: [] do
+      member do
+        get 'read', to: 'notifications#read', as: :read
+      end
+      collection do
+        get 'read_all', to: 'notifications#read_all', as: :read_all
+      end
+    end
+    resource :profile, only: %i[show edit update], controller: 'profile' do
       resource :tokens, only: %i[create destroy]
     end
     resources :users do

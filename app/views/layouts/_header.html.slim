@@ -6,4 +6,6 @@ nav.header-navbar.navbar-expand-md.navbar.navbar-with-menu.navbar-static-top.nav
           = link_to root_path do
             = image_tag("logo2.png", alt: 'Sales Assistant', id: 'logo1')
         - if user_signed_in?
-          = render 'layouts/shared/user_menu'
+          ul.nav.navbar-nav.float-right
+            = render 'layouts/shared/notifications'
+            = render 'layouts/shared/user_menu'

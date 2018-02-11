@@ -11,47 +11,44 @@
             .card-content
               .media.align-items-stretch
                 .p-2.text-center.bg-primary.bg-darken-2
-                  i.fa.fa-building.fa-3x.white
+                  i.ft-list.font-large-2.white
                 .p-2.bg-gradient-x-primary.white.media-body
                   h5
                     | Companies
                   h5.text-bold-400.mb-0
-                    i.ft-plus
                     | 75
         .col-xl-3.col-lg-6.col-12
           .card
             .card-content
               .media.align-items-stretch
                 .p-2.text-center.bg-danger.bg-darken-2
-                  i.fa.fa-users.fa-3x.white
+                  i.ft-user.font-large-2.white
                 .p-2.bg-gradient-x-danger.white.media-body
                   h5
                     | New Users
                   h5.text-bold-400.mb-0
-                    i.ft-arrow-up
                     | 1,238
         .col-xl-3.col-lg-6.col-12
           .card
             .card-content
               .media.align-items-stretch
                 .p-2.text-center.bg-warning.bg-darken-2
-                  i.fa.fa-search.fa-3x.white
+                  i.ft-search.font-large-2.white
                 .p-2.bg-gradient-x-warning.white.media-body
                   h5
                     | Search results
                   h5.text-bold-400.mb-0
-                    i.ft-arrow-down
                     |  4,658
         .col-xl-3.col-lg-6.col-12
           .card
             .card-content
               .media.align-items-stretch
                 .p-2.text-center.bg-success.bg-darken-2
-                  i.fa.fa-copy.fa-3x.white
+                  i.ft-layers.font-large-2.white
                 .p-2.bg-gradient-x-success.white.media-body
                   h5 New pages
                   h5.text-bold-400.mb-0
-                    i.ft-arrow-up = @count_of_pages
+                    = @count_of_pages
       .row.match-height
         .col-xl-8.col-lg-12
           = render 'account/dashboard/recent_pages', recent_pages: @recent_pages

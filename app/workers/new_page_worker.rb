@@ -9,6 +9,7 @@ class NewPageWorker
     process
   rescue SocketError, OpenURI::HTTPError, Net::OpenTimeout, OpenSSL::SSL::SSLError
     page.update_attributes(status: Page::ERROR_STATUS)
+    NotificationBuilder.new(content: page).error("Page #{page.id} was crushed").create
   end
 
   private
@@ -17,6 +18,10 @@ class NewPageWorker
     page.update_attributes(status: Page::IN_PROGRESS_STATUS)
     parse_html_content
     make_screenshot
+    NotificationBuilder
+      .new(content: page)
+      .success("Page #{page.id} was successful processed")
+      .create
     page.update_attributes(status: Page::PROCESSED_STATUS)
   end
 

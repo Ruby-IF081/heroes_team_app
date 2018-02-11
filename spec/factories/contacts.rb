@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  email      :string
+#  phone      :string
+#  message    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 FactoryBot.define do
   factory :contact, class: Contact do
     name { Faker::Name.name }

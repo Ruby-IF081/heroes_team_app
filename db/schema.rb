@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203131713) do
+ActiveRecord::Schema.define(version: 20180203214857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,19 @@ ActiveRecord::Schema.define(version: 20180203131713) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.string "status"
+    t.boolean "readed", default: false
+    t.string "content"
+    t.integer "user_id"
+    t.bigint "notificable_id"
+    t.string "notificable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notificable_type", "notificable_id"], name: "index_notifications_on_notificable_type_and_notificable_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "page_type"
     t.string "title"
@@ -87,9 +100,7 @@ ActiveRecord::Schema.define(version: 20180203131713) do
     t.datetime "updated_at", null: false
     t.bigint "company_id"
     t.integer "rating", default: 0
-    t.datetime "deleted_at"
     t.index ["company_id"], name: "index_pages_on_company_id"
-    t.index ["deleted_at"], name: "index_pages_on_deleted_at"
   end
 
   create_table "tenants", force: :cascade do |t|

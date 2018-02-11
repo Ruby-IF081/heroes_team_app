@@ -47,8 +47,9 @@ class Page < ApplicationRecord
   PENDING_TITLE    = 'pending'.freeze
 
   belongs_to :company
-  delegate :tenant, to: :company, allow_nil: true
-  has_many :comments, as: :commentable, dependent: :destroy
+  delegate   :tenant, to: :company, allow_nil: true
+  has_many   :comments, as: :commentable, dependent: :destroy
+  has_many   :notifications, as: :notificable, dependent: :delete_all
 
   scope :recent, -> { order(created_at: :desc) }
 
