@@ -5,6 +5,6 @@
       - if rating.to_i > 0
         button onclick="changeRating(this,#{rating});" class='btn btn-success col-md-2' +#{rating}
       - elsif rating.to_i == 0
-        button onclick="changeRating(this,-#{page.rating});" class='btn btn-info col-md-2' +#{rating}
+        button onclick="changeRating(this,-#{rating});" class='btn btn-info col-md-2' +#{rating}
       - else
         button onclick="changeRating(this,#{rating});" class='btn btn-danger col-md-2' #{rating}
