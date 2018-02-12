@@ -10,7 +10,8 @@ tr[id="#{dom_id(page, :table_row)}"]
   td
     span.badge.badge-pill[class= "#{- get_class(page.status)}"]
       = page.status
-  td = page.rating
+  td[id="#{dom_id(page, :rating)}"] = render 'rating', page: page
+  td.t-rate = render 'rate_form', page: page
   td
     .btn-icon.btn.btn-white.btn-round
       = link_to account_company_page_path(id: page.id), method: :delete, remote: true

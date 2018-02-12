@@ -11,15 +11,27 @@
                   @page.company_name => account_company_path(@page.company),
                   'Pages' => account_company_pages_path,
                   @page.title => nil})
-    .content-header-right.text-md-right.col-12
-      .row-arrow-right
-        p Rate this page:
-      .row-arrow-right
-        = render 'rate_form', page: @page
   .content-body
     section.row
       .col-sm-12
         /! Overview
+        .card
+          .card-header
+            h4.card-title Rating
+          .card-content
+            .card-body
+              .row
+                .card-text.col-sm-2
+                  h5 = "Page rating:"
+                .card-text.col-sm-3 id="#{dom_id(@page, :rating)}"
+                  = render 'rating', page: @page
+              .row
+                .card-text.col-sm-6 id="#{dom_id(@page, :progress)}"
+                  = render 'progress_bar', page: @page
+              .row
+                .card-text.col-sm-6
+                  h5 Rate this page:
+                  = render 'rate_form', page: @page
         #overview.card
           .card-header
             h4.card-title Overview

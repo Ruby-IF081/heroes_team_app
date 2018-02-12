@@ -1,0 +1,12 @@
+var $rate = $('#<%= dom_id(@page, :rate) %>');
+var $page = $('#<%= dom_id(@page, :edit) %>');
+$rate.fadeOut(300, function(){
+  $page.append('<div id="loading"></div>');
+  $('#loading').delay(300).fadeOut(300, function(){
+  	$('#loading').remove();
+  	$rate.fadeIn();
+  	$('#<%= dom_id(@page, :rating) %>').html("<%= j render 'rating', { page: @page } %>").fadeIn();
+    $('#<%= dom_id(@page, :progress) %>').html("<%= j render 'progress_bar', { page: @page } %>").fadeIn();
+  });
+});
+

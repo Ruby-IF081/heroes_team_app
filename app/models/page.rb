@@ -42,9 +42,11 @@ class Page < ApplicationRecord
 
   MANUALLY_ADDED_PAGES_TYPES = [CHROME_EXTENSION, BY_AJAX].freeze
 
-  LEGAL_RATING     = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
+  LEGAL_RATING      = %w[1000 100 50 10 -10 -50 -100 -1000].freeze
 
-  PENDING_TITLE    = 'pending'.freeze
+  PENDING_TITLE     = 'pending'.freeze
+
+  POSITIVE_PROGRESS = 50
 
   belongs_to :company
   delegate   :tenant, to: :company, allow_nil: true
@@ -91,6 +93,19 @@ class Page < ApplicationRecord
 
   def update_rating(new_rating)
     update(rating: new_rating.to_i + rating) if LEGAL_RATING.include?(new_rating)
+  end
+
+  def rating_progress
+    return 0 unless rating.positive?
+    rating * 100 / max_rating
+  end
+
+  def max_rating
+    company.pages.maximum(:rating)
+  end
+
+  def good_progress?
+    rating_progress >= POSITIVE_PROGRESS
   end
 
   private

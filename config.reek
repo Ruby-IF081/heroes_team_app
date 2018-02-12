@@ -38,7 +38,7 @@ exclude_paths:
 UtilityFunction:
   public_methods_only: true
 TooManyConstants:
-  max_constants: 16
+  max_constants: 17
 UncommunicativeVariableName:
   accept:
     - !ruby/regexp /q/

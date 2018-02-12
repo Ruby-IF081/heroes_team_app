@@ -16,10 +16,9 @@ class Account::PagesController < ApplicationController
     @page = resource
     @company = @page.company
     if @page.update_rating(params[:page][:rating])
-      redirect_to account_company_pages_path
+      respond_to_format
     else
-      flash.now[:danger] = 'Invalid values for rating!'
-      render :show
+      respond_to_format { render(js: "alert('Invalid values for rating!');") }
     end
   end
 

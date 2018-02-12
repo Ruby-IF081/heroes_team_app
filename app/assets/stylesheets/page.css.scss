@@ -39,6 +39,39 @@
 .t-status {
   width: 15%;
 }
-.t-rating {
-  width: 10%;
+.t-rate {
+  width: 400px;
+  height: 30px;
+}
+.table.pages-list th, .table.pages-list td{
+  padding: 0.75rem 1rem;
+}
+.rating {
+  width: 100px;
+}
+.rate {
+  height: 30px;
+}
+
+// Spinner
+
+#loading {
+  margin-left: auto; 
+  margin-right: auto;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-color: #10C888;
+  border: 3px solid rgba(16,200,136,.3);
+  border-radius: 50%;
+  border-top-color: #FF6D80;
+  animation: spin 0.5s linear infinite;
+  -webkit-animation: spin 0.5s linear infinite;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
 }
