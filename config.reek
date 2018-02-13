@@ -42,3 +42,6 @@ TooManyConstants:
 UncommunicativeVariableName:
   accept:
     - !ruby/regexp /q/
+UncommunicativeMethodName:
+  accept:
+    - google_oauth2
