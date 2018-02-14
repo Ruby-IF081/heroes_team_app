@@ -18,5 +18,5 @@ module HerosTeamApp
 end
 
 Raven.configure do |config|
-  config.dsn = 'https://bad57917bfc84d53aadb8ca34d5e812b:90f71e573fe24f7b8901ea818114712f@sentry.io/284099'
+  config.dsn = Rails.application.secrets.sentry_gem
 end
