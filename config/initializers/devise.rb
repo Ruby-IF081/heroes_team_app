@@ -253,7 +253,8 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   Rails.application.secrets.facebook_app_id,
                   Rails.application.secrets.facebook_app_secret,
-                  scope: 'email', info_fields: 'email, first_name, last_name'
+                  scope: 'email', info_fields: 'email, first_name, last_name',
+                  display: 'popup'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
