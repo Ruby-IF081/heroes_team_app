@@ -16,3 +16,7 @@ module HerosTeamApp
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+Raven.configure do |config|
+  config.dsn = Rails.application.secrets.sentry_gem
+end

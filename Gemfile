@@ -38,6 +38,7 @@ gem 'reek', '~> 4.7', '>= 4.7.3'
 gem 'rubocop', '~> 0.51.0', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'searchkick'
+gem 'sentry-raven'
 gem 'sidekiq'
 gem 'simple_form'
 gem 'slim'
