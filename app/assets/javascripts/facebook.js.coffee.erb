@@ -7,7 +7,7 @@ jQuery ->
     cache: true
 
 window.fbAsyncInit = ->
-  FB.init(appId: '2016329431980256', cookie: true, oauth: true)
+  FB.init(appId: '<%= Rails.application.secrets.facebook_app_id %>', cookie: true, oauth: true)
 
   $('#facebook-popup').click (e) ->
     e.preventDefault()

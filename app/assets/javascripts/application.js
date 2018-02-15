@@ -28,4 +28,4 @@
 //= require react
 //= require react_ujs
 //= require components
-//= require facebook
+//= require facebook.js.coffee.erb
