@@ -253,7 +253,9 @@ Devise.setup do |config|
   config.omniauth :facebook,
                   Rails.application.secrets.facebook_app_id,
                   Rails.application.secrets.facebook_app_secret,
-                  scope: 'email', info_fields: 'email, first_name, last_name'
+                  scope: 'email', info_fields: 'email, first_name, last_name',
+                  display: 'popup'
+
   config.omniauth :google_oauth2,
                   Rails.application.secrets.google_client_id,
                   Rails.application.secrets.google_client_secret
