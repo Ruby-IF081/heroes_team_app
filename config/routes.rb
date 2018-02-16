@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/422', to: 'errors#unacceptable'
   get '/500', to: 'errors#internal_error'
 
+  mount ActionCable.server, at: '/cable'
+
   devise_for :users, path: 'account', controllers: {
     registrations: 'users/registrations', sessions: 'users/track_sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'

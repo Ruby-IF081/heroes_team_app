@@ -35,6 +35,7 @@ gem 'rails_best_practices'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem 'react-rails'
 gem 'reek', '~> 4.7', '>= 4.7.3'
+gem 'redis', '~> 3.0'
 gem 'rubocop', '~> 0.51.0', require: false
 gem 'sass-rails', '~> 5.0'
 gem 'searchkick'
