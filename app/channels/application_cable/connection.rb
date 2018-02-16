@@ -11,7 +11,7 @@ module ApplicationCable
     private
 
     def find_verified_user
-      if logged_in?
+      if current_user
         current_user
       else
         reject_unauthorized_connection

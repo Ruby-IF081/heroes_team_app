@@ -1,6 +1,6 @@
 - set_meta_tags title: "#{@company.name} - Overview",
                 description: "#{@company.name} info"
-.content-wrapper
+.content-wrapper data-company="#{@company.id}"
   .content-header.row
     .content-header-left.col-md-6.col-12.mb-2
       .content-header-title.mb-0
@@ -51,17 +51,9 @@
             .card-content
               .card-body
                 = render 'account/companies/html/tweets', tweets: @twitter.tweets
-        - if @videos.present?
-          .card
-            .card-header
-              h4.card-title= "#{@company.name} youtube videos"
-            .card-content
-              .card-body
-                = render 'account/companies/html/youtube_videos', videos: @videos
-            .card-content
-              .card-body
-                .card-text
-                  = link_to 'Show All Videos', account_company_videos_path(@company), class: 'btn btn-secondary btn-lg btn-block'
+        #youtube-videos
+          - if @videos.present?
+            = render 'account/companies/html/youtube_videos', company: @company, videos: @videos
         .card
           .card-header
             h4.card-title= "#{@company.name} comments"

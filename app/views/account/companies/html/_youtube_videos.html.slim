@@ -1,4 +1,13 @@
-.row
-  - videos.each do |video|
-    .card-text.col-md-4
-      = video.embed_code.html_safe
+.card
+  .card-header
+    h4.card-title= "#{company.name} youtube videos"
+  .card-content
+    .card-body
+      .row
+        - videos.each do |video|
+          .card-text.col-md-4
+            = video.embed_code.html_safe
+  .card-content
+    .card-body
+      .card-text
+        = link_to 'Show All Videos', account_company_videos_path(company), class: 'btn btn-secondary btn-lg btn-block'
