@@ -9,10 +9,20 @@ class CompanyVideoWorker
       channel_videos.each do |video|
         company.videos.create(title: video.title, embed_code: get_embed_code(video.id))
       end
+      broadcast_to_channel(company)
     end
   end
 
   private
+
+  def broadcast_to_channel(company)
+    ActionCable.server.broadcast "youtube_channel_user_#{company.user.id}",
+                                 company: company.id,
+                                 videos: ApplicationController
+                                   .render(partial: 'account/companies/html/youtube_videos',
+                                           locals: { company: company,
+                                                     videos: company.videos.take(3) })
+  end
 
   def get_channel(channel_link)
     channel_id = channel_link.split('channel/').last

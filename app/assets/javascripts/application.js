@@ -29,3 +29,4 @@
 //= require react_ujs
 //= require components
 //= require facebook.js.coffee.erb
+//= require cable
