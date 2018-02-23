@@ -12,40 +12,32 @@ class UserOverview extends React.Component {
                             <div className={"card-image col-sm-2"}>
                               <img src={user.avatar_url} alt={user.full_name} />
                             </div>
-                            <div className={"card-text col-sm-8"}>
-                                <div className={"row"}>
+                            <div className={"card-text col-sm-10"}>
+                                <div className={"row col-sm-10"}>
                                     <div className={"card-text col-sm-2"}>
                                         <h6>Full name:</h6>
                                     </div>
-                                    <div className={"card-text col-sm-4"}>
+                                    <div className={"card-text col-sm-10"}>
                                         <p>{user.full_name}</p>
                                     </div>
-                                </div>
-                                <div className={"row"}>
                                     <div className={"card-text col-sm-2"}>
                                         <h6>User-email:</h6>
                                     </div>
-                                    <div className={"card-text col-sm-4"}>
+                                    <div className={"card-text col-sm-10"}>
                                         <p>{user.email}</p>
                                     </div>
-                                </div>
-                                <div className={"row"}>
                                     <div className={"card-text col-sm-2"}>
                                         <h6>Role:</h6>
                                     </div>
-                                    <div className={"card-text col-sm-4"}>
+                                    <div className={"card-text col-sm-10"}>
                                         <p>{user.role}</p>
                                     </div>
-                                </div>
-                                <div className={"row"}>
                                     <div className={"card-text col-sm-2"}>
                                         <h6>Created at:</h6>
                                     </div>
                                     <div className={"card-text col-sm-10"}>
                                         <p>{user.created_at}</p>
                                     </div>
-                                </div>
-                                <div className={"row"}>
                                     <div className={"card-text col-sm-2"}>
                                         <h6>Tenant:</h6>
                                     </div>
