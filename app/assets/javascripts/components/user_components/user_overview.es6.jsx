@@ -2,7 +2,7 @@ class UserOverview extends React.Component {
     render(){
         const { user } = this.props;
         return(
-            <div id={"overview"} className={"card"}>
+            <div className={"card"}>
                 <div className={"card-header"}>
                     <h4 className={"card-title"}>Profile</h4>
                 </div>
