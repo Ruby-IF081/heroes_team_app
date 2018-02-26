@@ -4,4 +4,3 @@
       h4.text-uppercase Contact us
       #form_wrapper
         = render(partial: 'contacts_form', object: @contact)
-    = react_component('ContactForm', {authenticity_token: form_authenticity_token}, {class: 'content-wrapper contacts'})
