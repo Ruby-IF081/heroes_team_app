@@ -43,12 +43,16 @@ class Account::UsersController < ApplicationController
   end
 
   def update
-    @user = resource
-    if @user.update_attributes(resource_params)
-      redirect_to account_users_path, flash: { success: 'Successfuly updated!' }
-    else
-      flash[:danger] = 'Failed to update!'
-      render :edit
+    @user = User.find(params[:id])
+    respond_to do |format|
+      format.json do
+        if @user.update_attributes(resource_params)
+          render js: "window.location = '#{account_users_path}'"
+        else
+          flash[:danger] = 'Failed to update!'
+          render :edit
+        end
+      end
     end
   end
 

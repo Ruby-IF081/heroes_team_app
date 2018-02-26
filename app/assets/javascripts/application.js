@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require react
+//= require react_ujs
+//= require components
 //= require jquery3
 //= require jquery.matchHeight
 //= require popper
@@ -25,7 +28,5 @@
 //= require comments_form
 //= require match_tweets_height
 //= require user_contacts
-//= require react
-//= require react_ujs
-//= require components
 //= require facebook.js.coffee.erb
+//= require cable

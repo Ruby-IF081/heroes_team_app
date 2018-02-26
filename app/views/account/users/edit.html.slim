@@ -13,4 +13,4 @@
   .content-body
     .row
       .col-md-3
-        = render 'form', button_text: 'Edit', user: @user
+        = react_component("UserUpdate", props = {user: @user, csrf_token: form_authenticity_token}, options = {class: 'simple_form edit_user'})
